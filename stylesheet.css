@@ -5,13 +5,12 @@
 }
 
 body{
-    background-color: #F8F8FB;
+    background-color: #dddde1;
 }
 
 .Outer-Container{
     width: 100%;
     height: 100vh;
-    background-color: bisque;
     display: flex;
     margin: 0 auto;
 }
@@ -64,12 +63,6 @@ body{
     object-fit: contain;
 }
 
-.Invoice-Outer-container{
-    width: 92%;
-    height: 100%;
-   
-}
-
 .nav .avatar-togglebtn-Container{
     width: 100%;
     height: 25%;
@@ -105,6 +98,176 @@ body{
     border-radius: 50%;
 }
 
+.Invoice-Outer-container{
+    width: 92%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* container which all the invoices can be veiwed as well as for creating and filtering invoices */
+
+.invoice-Container{
+    width: 90%;
+    height: 99%;
+}
+
+.invoice-nav{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dddde1;
+}
+
+.invoice-Counter{
+width: 40%;
+height: 100%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: flex-start;
+
+}
+
+.invoice-Counter h1{
+    font-size: 4vw;
+    margin: 5px 0px;
+}
+
+.invoice-Counter h1,p{
+    margin-left:10px;
+}
+
+.createInvoice{
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.createInvoice button{
+    width: 40%;
+    height: 40%;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7C5DFA;
+    color: white;
+    font-size: 0.9vw;
+    margin: 0 auto;
+    border: none;
+}
+
+.createInvoice select{
+    width: 20px;
+    border: none;
+    background-color: transparent;
+    margin: 0px 10px;
+}
+
+.newInvoice img{
+    width: 25px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 0px 8px;
+}
+/* invoices */
+
+.invoices{
+    width: 100%;
+    height: 80%;
+    padding: 1px 0px;
+    background-color: #dddde1;
+}
+
+.invoice{
+    width: 99%;
+    height: 15%;
+    background-color: white;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.invoice .invoice-id{
+    font-weight: bold;
+}
+
+.invoice .invoice-amount{
+    font-weight: bold;
+  font-size: 1.7vw;
+}
+
+.status-container{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit{
+    width: 5%;
+    margin-left: 20px;
+}
+
+.editbutton{
+display: none;
+}
+
+
+
+.invoice .invoice-status{
+    background-color:  rgba(255,143,0,0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+    border-radius: 10px;
+    color: #FF8F00;
+    font-size: 1vw;
+}
+
+/* .invoice-status p {
+    font-size: 1vw;
+} */
+
+.invoice-status .dot{
+    width: 1vw;
+    height: 1vw;
+    background-color: #FF8F00;
+    border-radius: 50%;
+    margin: 0px 5px;
+}
+
+@media only screen and (min-width: 2000px) {
+    .createInvoice label, p{
+        font-size: 1vw;
+    }
+
+    .createInvoice select{
+        width: 1.1vw;
+    }
+
+    .newInvoice img{
+        width: 1.2vw;
+        background-color: white;
+        border-radius: 50%;
+        padding: 5px;
+        margin: 0px 8px;
+    }
+}
 
 
 @media only screen and (max-width: 1000px) {
@@ -118,6 +281,14 @@ body{
     height: 100%;
    
 }
+
+.createInvoice{
+    width: 50%;
+}
+
+.createInvoice button{
+    width: 40%;
+    height: 30%;
 }
 
 
@@ -138,7 +309,6 @@ body{
     .Invoice-Outer-container{
         width: 100%;
         height: 100%;
-       
     }
 
     .nav .logo-container{
@@ -171,9 +341,6 @@ body{
         align-items: center;
     }
 
-
-    
-    
     .light-dark-container{
         width: 50%;
         height: 100%;
@@ -193,6 +360,120 @@ body{
     .avatar-container .avatar{
         width: 40%;
     }
+
+    .invoice-Container{
+        width: 90%;
+        height: 99%;
+        background-color: white;
+    }
+    .createInvoice{
+        width: 50%;
+    }
+
+    .createInvoice button{
+        width: 40%;
+        height: 35%;
+        font-size: 9px;
+    }
+
+    .invoice .invoice-status{
+        width: 60%;
+        font-size: 1.5vw;
+    }
+
+    .invoice .invoice-amount {
+        font-weight: bold;
+        font-size: 3vw;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .createInvoice{
+        width: 55%;
+    }
+
+    .invoice-Container{
+        width: 99%;
+        height: 99%;
+        background-color: white;
+    }
+
+    .invoice-Container p, label {
+        font-size: 12px;
+    }
+
+    .invoice .invoice-status{
+        width: 70%;
+        font-size: 1;
+    }
+
+    .edit {
+        width: 5%;
+        margin-left: 10px;
+    }
+
+  
+}
+
+@media only screen and (max-width: 500px) {
+    .invoice {
+        width: 90%;
+        height: auto;
+        background-color: white;
+        margin: 10px auto;
+        display: flex;
+        justify-content: baseline;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .invoice-id{
+        width: 40%;
+        margin: 5px;
+    }
+
+    .invoice-due{
+        width: 40%;
+        margin: 5px;
+    }
+
+    .customer-name{
+        width: 40%;
+        margin: 5px;
+    }
+
+    .invoice-amount{
+        width: 40%;
+        margin: 5px;
+    }
+
+    .status-container{
+            width: 40%;
+            height: 70px;
+            margin: 5px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+    } 
+
+    .editbutton{
+        width: 40%;
+        margin: 10px;
+        background-color: #252945;
+        border: none;
+        padding: 8px 0px;
+        color: white;
+        border-radius: 10px;
+        display: block;
+    }
+
+    .edit{
+        display: none;
+    }
+
+
+
+
 }
 
 @media only screen and (max-width: 400px) {
@@ -204,4 +485,14 @@ body{
         width: 40%;
         height: 100%;
 }
+
+.invoice-Counter {
+    width: 30%;
+    height: 100%;
 }
+
+.createInvoice{
+    width: 60%;
+}
+
+}}
