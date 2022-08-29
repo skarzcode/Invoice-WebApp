@@ -5,7 +5,7 @@
 }
 
 body{
-    background-color: #f2f2f3;
+    background-color: #f6f6f6;
 }
 
 .Outer-Container{
@@ -120,7 +120,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f2f2f3;
+    background-color: #f6f6f6;
 }
 
 .invoice-Counter{
@@ -185,7 +185,7 @@ align-items: flex-start;
     width: 100%;
     height: 80%;
     padding: 1px 0px;
-    background-color: #f2f2f3;
+    background-color: #f6f6f6;
 }
 
 .invoice{
