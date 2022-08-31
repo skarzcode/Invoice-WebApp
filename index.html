@@ -25,6 +25,116 @@
                 <img class="avatar" src="starter-code\assets\image-avatar.jpg" alt="avatar">
             </div>
            </div>
+
+
+
+           <div class="form-container">
+            <div class="form">
+            <h1>New Invoice</h1>
+            <div class="bill-from">
+                <p>Bill From</p>
+            <label for="form-address">Street Address</label><br>
+            <input class="form-address" type="text" id="form-address" name="form-address"><br><br>
+            <div class="location-container">
+                <div class="flexContainer">
+                <label for="form-city">City</label><br>
+                <input class="form-city" type="text" id="form-city" name="form-city"><br>
+            </div>
+                <!--  -->
+                <div class="flexContainer">
+                <label for="form-postCode">Post Code</label><br>
+                <input class="form-postCode" type="text" id="form-postCode" name="form-postCode"><br>
+            </div>
+            <!--  -->
+            <div class="flexContainer">
+                <label for="form-country">Country</label><br>
+                <input class="form-country" type="text" id="form-country" name="form-country"><br>
+            </div>
+            </div>
+            </div>
+            <!--  -->
+            <div class="bill-to">
+                <p>Bill To</p>
+            <label for="client-name">Client's Name</label><br>
+            <input class="client-name" type="text" id="client-name" name="client-name"><br><br>
+            <!--  -->
+            <label for="client-email">Client's Email</label><br>
+            <input class="client-email" type="text" id="client-email" name="client-email"><br><br>
+            <!--  -->
+            <label for="form-address2">Street Address</label><br>
+            <input class="form-address2" type="text" id="form-address2" name="form-address2"><br><br>
+            <!--  -->
+            <div class="location-container">
+                <div class="flexContainer">
+                <label for="form-city2">City</label><br>
+                <input class="form-city2" type="text" id="form-city2" name="form-city2"><br>
+            </div>
+                <!--  -->
+                <div class="flexContainer">
+                <label for="form-postCode2">Post Code</label><br>
+                <input class="form-postCode2" type="text" id="form-postCode2" name="form-postCode2"><br>
+            </div>
+            <!--  -->
+            <div class="flexContainer">
+                <label for="form-country2">Country</label><br>
+                <input class="form-country2" type="text" id="form-country2" name="form-country2"><br>
+            </div>
+            </div>
+
+            </div>
+            <!--  -->
+            <div class="invoice-detail">
+                <div class="date-container">
+                    <div class="flexContainer2">
+                        <label for="invoice-date-made">Invoice Date</label><br>
+                        <input class="invoice-date-made" type="date" id="invoice-date-made" name="invoice-date-made"><br>
+                    </div>  
+                    <!--  -->
+                    <div class="flexContainer2">
+                        <label for="invoice-date-due">Payment Due</label><br>
+                        <input class="invoice-date-due" type="date" id="invoice-date-due" name="invoice-date-due"><br>
+                    </div>  
+                </div>
+                <!--  -->
+                <label for="form-project-description">Project Description</label><br>
+                <input class="form-project-description" type="text" id="form-project-description" name="form-project-description"><br>
+
+            </div>
+
+            <!--  -->
+            <div class="invoice-item-list">
+                <h1>Item List</h1>
+                <div class="items-container">
+                <div class="item-header">
+                    <p class="item-header-name">Item Name</p>
+                    <p class="item-header-qty">Qty.</p>
+                    <P class="item-header-price">Price</P>
+                    <p class="item-header-total">Total</p>
+                </div>
+                <div class="item">
+                    <input class="item-list-name" type="text" id="item-list-name" name="item-list-name">
+                    <input class="item-list-qty" type="text" id="item-list-qty" name="item-list-qty">
+                    <input class="item-list-price" type="text" id="item-list-price" name="item-list-price">
+                    <input class="item-list-total" type="text" id="item-list-total" name="item-list-total"><br>
+                    <img class="delete-item" src="starter-code\assets\icon-delete.svg" alt="bin">
+                </div>
+            </div>
+            <button class="new-item-btn">+ Add New Item</button>
+            </div>
+            <!--  -->
+            <div class="form-button-container">
+                <button class="Discard">Discard</button>
+                <div class="draft-save">
+                    <button class="Draft">Save as Draft</button>
+                    <button class="Save">Save & Send</button>
+                </div>
+            </div>
+        </div>
+           </div>
+
+
+
+
         </aside>
         <div class="Invoice-Outer-container">
             <div class="invoice-Container">
@@ -94,10 +204,101 @@
                 </div>
                 
 
-
-
-
             </div>
+
+
+            <div class="Invoice-description">
+                <img class="back-btn" src="starter-code\assets\icon-arrow-left.svg" alt="back">
+                <div class="invoice-header">
+                    <div class="description-status">
+                        <p>Status</p>
+                        <div class="status-container2">
+                            <div class="dot2"></div>
+                            <p class="statusInvoice">Pending</p>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="button-container">
+                        <button class="button-edit">Edit</button>
+                        <button class="button-delete">Delete</button>
+                        <button class="button-paid">Mark as Paid</button>
+                    </div>
+                </div>
+                <div class="invoice-body">
+                    <div class="project-info">
+                        <div class="proj-id-container">
+                            <h1 class="proj-id">#XM9141</h1>
+                            <p class="proj-name">Graphic Design</p>
+                        </div>
+
+                        <div class="clientAddress-container">
+                            <p class="client-street">19 Union Terrace</p>
+                            <p class="client-city">London</p>
+                            <p class="client-postcode">E1 3EZ</p>
+                            <P class="client-country">United Kingdom</P>
+                        </div>
+                    </div>
+
+                    <div class="customer-info">
+                        <div class="invoice-dates">
+                            <p>Invoice Date</p>
+                            <h1 class="invoiceDate">21 August</h1>
+                            <p>Payment Due</p>
+                            <h1 class="invoiceDue">20 Sep 2021</h1>
+                        </div>
+
+                        <div class="senderAddress-container">
+                            <p> Bill To</p>
+                            <h1 class="customerName">Alex Grim</h1>
+                            <div class="senderAddress">
+                                <p class="sender-street">84 Church Way</p>
+                                <p class="sender-city">Bradford</p>
+                                <p class="sender-postCode">BD1 9PB</p>
+                                <P class="sender-country">United Kingdom</P>
+                            </div>
+                        </div>
+
+                        <div class="email-container">
+                           <div class="send-to">
+                            <p>Send To</p>
+                            <h1 class="customer-email">alexgrim@gmail.com</h1>
+                           </div>
+                        </div>
+                    </div>
+
+                    <div class="project-recipt">
+                        <div class="recipt-header">
+                            <p class="item">Item Name</p>
+                            <p class="qty">QTY.</p>
+                            <P class="price">Price</P>
+                            <p class="total">Total</p>
+                        </div>
+                        <div class="recipt">
+                            <p class="item-name">Banner Design</p>
+                            <p class="item-quantity">1</p>
+                            <p class="item-price">£1,800.00</p>
+                            <p class="item-total">£1,800.00</p>
+
+                        </div>
+                    </div>
+                    <div class="bill">
+                        <p>Amount Due</p>
+                        <h1 class="bill-total">£1,800.00</h1>
+                    </div>
+
+                    
+                </div>
+                <div class="button-container2">
+                    <button class="button-edit">Edit</button>
+                    <button class="button-delete">Delete</button>
+                    <button class="button-paid">Mark as Paid</button>
+                </div>
+            </div>
+
+
+
+            <!--  -->
+            
         </div>
     </div>
     <script src="app.js"></script>

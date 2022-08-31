@@ -6,11 +6,13 @@
 
 body{
     background-color: #f6f6f6;
+    min-height: 100vh;
+    height: auto;
 }
 
 .Outer-Container{
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
     margin: 0 auto;
 }
@@ -24,8 +26,279 @@ body{
     justify-content: space-between;
     align-items: center;
     border-bottom-right-radius: 3%;
-    overflow: hidden;
+    
+    position: relative;
 }
+
+.nav .form-container{
+    width: 400%;
+    height: 100%;
+    background-color: wheat;
+    position: absolute;
+    left: 100%;
+    z-index: 100;
+    border-top-right-radius: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+
+.form{
+    width: 90%;
+    height: 100%;
+    background-color: white;
+    overflow: scroll;
+    /* display: flex;
+    flex-direction: column; */
+    font-size: 1vw;
+   
+}
+
+.form::-webkit-scrollbar {
+    display: none;
+}
+
+.form h1{
+    margin: 40px 0px;
+}
+
+.bill-from{
+    background-color: rebeccapurple;
+    margin: 10px 0px;
+}
+
+.bill-from p{
+    margin: 20px 0px;
+}
+
+.bill-from label{
+    color: gray;
+}
+
+.form-address{
+    width: 100%;
+    margin: 10px 0px;
+    padding: 1vw 0px;
+    border-radius: 5px;
+    border: solid gray 1px;
+}
+
+.location-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flexContainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 30%;
+}
+
+.flexContainer input{
+    width: 100%;
+    border-radius: 5px;
+    border: solid gray 1px;
+    padding: 0.9vw 0px;
+}
+
+.bill-to{
+    background-color: rebeccapurple;
+    margin: 10px 0px;
+}
+
+.bill-to p{
+    margin: 20px 0px;
+}
+
+.bill-to label{
+    color: gray;
+}
+
+.bill-to input{
+    width: 100%;
+    border-radius: 5px;
+    border: solid gray 1px;
+    padding: 0.9vw 0px;
+    margin: 10px 0px;
+}
+
+.invoice-detail{
+    background-color: rebeccapurple;
+  color: gray;
+  margin: 10px 0px;
+}
+
+.date-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flexContainer2{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 45%;
+}
+
+.flexContainer2 input{
+    width: 100%;
+    padding: 0.9vw 0px;
+    border-radius: 5px;
+    border: solid gray 1px;
+}
+
+.invoice-detail .form-project-description{
+    width: 100%;
+    padding: 0.9vw 0px;
+    border-radius: 5px;
+    border: solid gray 1px;
+    margin: 10px 0px;
+}
+
+.invoice-item-list{
+    background-color: rebeccapurple;
+    width: 100%;
+    height: auto;
+}
+
+.items-container{
+    width: 100%;
+    height: auto;
+}
+
+.item-header{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+
+.item-header p{
+    margin: 0px;
+}
+
+.item-header-name{
+    width: 35%;
+}
+
+.item-header-qty{
+    width: 15%;
+}
+
+.item-header-price{
+    width: 25%;
+}
+
+.item-header-total{
+    width: 25%;
+}
+
+.item{
+    width: 100%;
+    height: auto;
+    margin: 5px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-list-name{
+    width: 30%;
+    padding: 0.6vw 0px;
+    border-radius: 5px;
+    border: solid gray 1px;
+}
+
+.item-list-qty{
+    width: 10%;
+    padding: 0.6vw 0px;
+    border-radius: 5px;
+    border: solid gray 1px;
+}
+
+.item-list-price{
+    width: 20%;
+    padding: 0.6vw 0px;
+    border-radius: 5px;
+    border: solid gray 1px;
+}
+
+.item-list-total{
+    width: 10%;
+    padding: 0.6vw 0px;
+    border-radius: 5px;
+    border: solid gray 1px;
+}
+
+.delete-item{
+    width: 3%;
+    margin-right: 10px;
+}
+.new-item-btn{
+    width: 100%;
+    padding: 1vw 0px;
+    border-radius: 1.5vw;
+    margin: 10px auto;
+    font-size: 1vw;
+    border: none;
+    background-color: #F6F6F6;
+}
+
+.form-button-container{
+    background-color: rebeccapurple;
+    width: 100%;
+    height: 150px;
+    margin: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Discard{
+    width: 20%;
+    padding: 1vw 0px;
+    border: none;
+    background-color: #F6F6F6;
+    border-radius: 1.5vw;
+    font-size: 1vw;
+}
+
+.draft-save{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.draft-save button{
+    width: 45%;
+    padding: 1vw 0px;
+    border: none;
+    border-radius: 1.5vw;
+    font-size: 1vw;
+}
+
+.Draft{
+    background-color: #252945;
+    color: white;
+}
+
+.Save{
+    background-color: #7C5DFA;
+    color: white;
+}
+
 
 .nav .logo-container{
     width: 100%;
@@ -105,6 +378,7 @@ body{
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: relative;
 }
 
 /* container which all the invoices can be veiwed as well as for creating and filtering invoices */
@@ -112,6 +386,32 @@ body{
 .invoice-Container{
     width: 90%;
     height: 99%;
+    margin: 0px auto;
+    transition: 1s ease-in-out;
+    transform: translateX(0vw);
+}
+
+.Invoice-description{
+    width: 70%;
+    height: 99%;
+    transform: translateX(100vw);
+    position: absolute;
+    transition: 1s ease-in-out;
+    overflow: scroll;
+}
+
+.Invoice-description::-webkit-scrollbar {
+    display: none;
+}
+
+.slideout{
+    transform: translateX(-100vw);
+    transition: 1s ease-in-out;
+}
+
+.slidein{
+    transform: translateX(0vw);
+    transition: 1s ease-in-out;
 }
 
 .invoice-nav{
@@ -251,6 +551,269 @@ display: none;
     margin: 0px 5px;
 }
 
+/* section for viewing invoices. editing and deleting. */
+
+.invoice-header{
+width: 99%;
+height: 15%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+border-radius: 1vw;
+margin: 20px auto;
+overflow: hidden;
+background-color: white;
+}
+
+
+
+.back-btn{
+    width: 1%;
+}
+
+.description-status{
+    width: 35%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.3vw;
+}
+
+.description-status p{
+    margin: 0px 20px;
+    color: gray;
+}
+
+.status-container2{
+    width: 40%;
+    height: 40%;
+    margin: 0px 20px;
+    background-color:  rgba(255,143,0,0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: #FF8F00;
+}
+
+.dot2{
+    width: 1vw;
+    height: 1vw;
+    background-color: #FF8F00;
+    border-radius: 50%;
+    margin: 0px 5px;
+}
+
+.button-container{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button-container button{
+    font-size: 1vw;
+}
+
+.button-edit{
+    width: 20%;
+    height: 40%;
+    background-color: #dfe3fa;
+    border-radius: 1.5vw;
+    border: none;
+    color: gray;
+}
+
+.button-delete{
+    width: 25%;
+    height: 40%;
+    background-color: #ec5757;
+    border-radius: 1.5vw;
+    border: none;
+    color: white;
+}
+
+.button-paid{
+    width: 30%;
+    height: 40%;
+    background-color: #7C5DFA;
+    border-radius: 1.5vw;
+    border: none;
+    color: white;
+}
+
+.button-container2{
+    display: none;
+}
+
+/* container for where the description of the invoice will be stored */
+.invoice-body{
+    width: 99%;
+height: auto;
+min-height: 80%;
+border-radius: 1vw;
+margin: 0px auto;
+
+background-color: white;
+}
+
+.project-info{
+    width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-info p{
+    color: gray;
+}
+
+.proj-id-container{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0px 50px;
+}
+
+.proj-id-container h1{
+    margin: 5px 0px;
+    font-size:2vw;
+    
+}
+
+.clientAddress-container{
+    width: 30%;
+    height: 100%;
+    margin: 0px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.clientAddress-container p{
+    margin: 3px 0px;
+}
+
+.customer-info{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px;
+}
+
+.customer-info h1{
+    font-size: 1.8vw;
+}
+
+.customer-info p{
+    color: gray;
+}
+
+.invoice-dates{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0px 50px;
+}
+
+.senderAddress-container{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0px 50px;
+}
+
+.senderAddress p{
+    margin-bottom: 3px;
+}
+
+.email-container{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.send-to{
+    width: 100%;
+    height: 90%;
+}
+
+.send-to h1{
+    margin: 20px 0px;
+}
+
+.project-recipt{
+        width: 90%;
+        height: auto;
+        min-height: 20%;
+        margin: 50px auto 0px auto;
+        background-color: #F6F6F6;
+        border-top-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+}
+
+.recipt-header{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: gray;
+}
+
+.recipt-header .item{
+    width: 30%;
+}
+
+.recipt-header .total{
+    margin-right: 10px;
+}
+
+.recipt{
+    width: 100%;
+    height: 10%; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recipt .item-name{
+    width: 35%;
+}
+
+.bill{
+    width: 90%;
+    height: auto;
+    min-height: 20%;
+    background-color: #252945;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.bill-total{
+    margin-right: 10px;
+}
+
+
 @media only screen and (min-width: 2000px) {
     .createInvoice label, p{
         font-size: 1vw;
@@ -291,6 +854,29 @@ display: none;
     height: 30%;
 }
 
+.description-status p{
+    margin: 0px 10px;
+}
+
+.dot2{
+    margin: 0px 0px;
+}
+
+.description-status{
+    font-size: 1.5vw;
+}
+
+.button-container button{
+    font-size: 1.5vw;
+}
+
+.customer-info p{
+    margin: 0px;
+}
+
+
+}
+
 
 @media only screen and (max-width: 800px) {
     .Outer-Container{
@@ -305,6 +891,24 @@ display: none;
         flex-direction: row;
         border-bottom-right-radius: 0%;
     }
+
+    .nav .form-container {
+        width: 80%;
+        height: auto;
+        position: absolute;
+        left: 0%;
+        top: 100%;
+    }
+
+    .form p, label,h1{
+        font-size: 2.5vw;
+    }
+
+    .form button{
+        padding: 2vw 0px;
+        font-size: 2vw;
+    }
+
 
     .Invoice-Outer-container{
         width: 100%;
@@ -385,6 +989,73 @@ display: none;
         font-weight: bold;
         font-size: 3vw;
     }
+
+    .description-status{
+        font-size: 2vw;
+    }
+
+    .Invoice-description{
+        width: 90%;
+        height: 99%;
+    }
+
+    .Invoice-description h1,p{
+        margin: 2px 0px;
+    }
+
+    .Invoice-description h1{
+        font-size: 2.7vw;
+    }
+
+    .button-container button{
+        font-size: 1.7vw;
+    }
+
+    .proj-id-container {
+        width: 30%;
+        margin: 0px 20px;
+    }
+
+    .clientAddress-container {
+        margin: 0px 20px;
+    }
+
+    .invoice-dates {
+        width: 25%;
+        margin: 0px 20px;
+    }
+
+    /* .invoice-Counter h1, p {
+        margin-left: 0px;
+        margin: 2px 0px;
+    } */
+
+    
+
+    .senderAddress-container {
+        width: 30%;
+        margin: 0px 20px;
+    }
+
+    .email-container{
+    width: 30%;
+    height: 100%;
+    margin: 0px 20px;
+}
+
+.project-recipt{
+    width: 95%;
+    height: auto;
+    padding:0px 10px;
+}
+
+.bill{
+    width: 95%;
+    padding:0px 10px;
+}
+
+
+    
 }
 
 @media only screen and (max-width: 600px) {
@@ -412,6 +1083,76 @@ display: none;
         margin-left: 10px;
     }
 
+    .description-status {
+        width: 40%;
+    }
+
+    .button-container {
+        width: 55%;
+    }
+
+    .button-container button{
+        font-size: 2vw;
+    }
+
+    .project-info {
+        width: 100%;
+        height: 40%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-bottom: 30px;
+    }
+
+    .proj-id-container {
+        width: 100%;
+        height: 50%;
+        margin: 0px 0px;
+        padding-left: 10px;
+    }
+
+
+    .clientAddress-container {
+        width: 100%;
+        height: 50%;
+        justify-content: center;
+        align-items: flex-start;
+        margin: 0px 0px;
+        padding-left: 10px;
+    }
+
+    .customer-info {
+        width: 100%;
+        height: 45%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+   
+    .invoice-dates {
+        width: 45%;
+        height: 50%;
+        margin: 0px 0px;
+        padding-left: 10px;
+    }
+
+    .senderAddress-container {
+        width: 45%;
+        height: 50%;
+        margin: 0px 0px;
+        padding-left: 10px;
+    }
+
+    .email-container {
+        width: 100%;
+        height: 50%;
+        margin: 20px 0px;
+        padding-left: 10px;
+    }
+
+    .Invoice-description h1{
+        font-size: 4vw;
+    }
   
 }
 
@@ -471,9 +1212,43 @@ display: none;
         display: none;
     }
 
+    
+    .description-status{
+        width: 100%;
+        height: 100%;
+        font-size: 3.7vw;
+        justify-content: space-between;
+    }
 
+    .status-container2 {
+        width: 40%;
+        height: 40%;
+        margin: 0px 0px;
+    }
 
+    .button-container{
+        display: none;
+    }
 
+    .button-container2{
+        width: 99%;
+        height: 15%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: whitesmoke;
+    }
+
+    .nav .form-container {
+        width: 100%;
+        height: auto;
+    }
+
+    .form {
+        width: 95%;
+        height: 100%;
+    }
+  
 }
 
 @media only screen and (max-width: 400px) {
@@ -495,4 +1270,4 @@ display: none;
     width: 60%;
 }
 
-}}
+}
