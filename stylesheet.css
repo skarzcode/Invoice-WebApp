@@ -30,7 +30,7 @@ body{
     position: relative;
 }
 
-.nav .form-container{
+.form-container{
     width: 400%;
     height: 100%;
     background-color: wheat;
@@ -41,8 +41,18 @@ body{
     display: flex;
     justify-content: center;
     align-items: flex-start;
-
+    transform: scale(0, 1);
+    transform-origin: left;
+    transition: transform 400ms ease-in-out;
 }
+
+.displayForm{
+    transform: scale(1, 1);
+    transform-origin: left;
+    transition: transform 400ms ease-in-out;
+}
+
+
 
 .form{
     width: 90%;
@@ -203,7 +213,7 @@ body{
     width: 25%;
 }
 
-.item{
+.itemCard{
     width: 100%;
     height: auto;
     margin: 5px 0px;
@@ -234,7 +244,7 @@ body{
 }
 
 .item-list-total{
-    width: 10%;
+    width: 15%;
     padding: 0.6vw 0px;
     border-radius: 5px;
     border: solid gray 1px;
@@ -299,6 +309,24 @@ body{
     color: white;
 }
 
+.Cancel{
+    background-color: #F6F6F6;
+    display: none;
+}
+
+.SaveChanges{
+    background-color: #7C5DFA;
+    color: white;
+    display: none;
+}
+
+.buttonDisplayNone{
+    display: none;
+}
+
+.buttonDisplay{
+    display: block;
+}
 
 .nav .logo-container{
     width: 100%;
@@ -486,6 +514,11 @@ align-items: flex-start;
     height: 80%;
     padding: 1px 0px;
     background-color: #f6f6f6;
+    overflow: scroll;
+}
+
+.invoices::-webkit-scrollbar {
+    display: none;
 }
 
 .invoice{
@@ -497,23 +530,39 @@ align-items: flex-start;
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
+    transition: 400ms ease-in;
+}
+
+.invoice:hover{
+    border: solid gray 2px;
+    
 }
 
 .invoice .invoice-id{
     font-weight: bold;
+    width: 25%;
 }
 
 .invoice .invoice-amount{
     font-weight: bold;
   font-size: 1.7vw;
+  width: 25%;
 }
 
 .status-container{
-    width: 20%;
+    width: 30%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.invoice-due{
+    width: 25%;
+}
+
+.customer-name{
+    width: 25%;
 }
 
 .edit{
@@ -528,9 +577,9 @@ display: none;
 
 
 .invoice .invoice-status{
-    background-color:  rgba(255,143,0,0.15);
+    background-color:  rgba(212, 189, 158, 0.15);
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 50%;
     height: 50%;
@@ -539,6 +588,9 @@ display: none;
     font-size: 1vw;
 }
 
+.statusInvoice{
+    font-size: 1.1vw;
+}
 /* .invoice-status p {
     font-size: 1vw;
 } */
@@ -598,11 +650,11 @@ background-color: white;
 }
 
 .dot2{
-    width: 1vw;
-    height: 1vw;
+    width: 0.8vw;
+    height: 0.8vw;
     background-color: #FF8F00;
     border-radius: 50%;
-    margin: 0px 5px;
+    margin: 0px 0px;
 }
 
 .button-container{
@@ -740,7 +792,7 @@ background-color: white;
 }
 
 .email-container{
-    width: 30%;
+    width: 40%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -749,7 +801,7 @@ background-color: white;
 
 .send-to{
     width: 100%;
-    height: 90%;
+    height: 85.5%;
 }
 
 .send-to h1{
@@ -776,7 +828,11 @@ background-color: white;
 }
 
 .recipt-header .item{
-    width: 30%;
+    width: 35%;
+}
+
+.recipt-header .qty,.price,.total{
+    width: 21%;
 }
 
 .recipt-header .total{
@@ -807,6 +863,10 @@ background-color: white;
     justify-content: space-between;
     align-items: center;
     color: white;
+}
+
+.item-quantity,.item-price,.item-total{
+    width: 21%;
 }
 
 .bill-total{
@@ -874,6 +934,10 @@ background-color: white;
     margin: 0px;
 }
 
+.form {
+    width: 95%;
+    
+}
 
 }
 
@@ -1038,7 +1102,7 @@ background-color: white;
     }
 
     .email-container{
-    width: 30%;
+    width: 40%;
     height: 100%;
     margin: 0px 20px;
 }

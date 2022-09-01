@@ -38,17 +38,17 @@
             <div class="location-container">
                 <div class="flexContainer">
                 <label for="form-city">City</label><br>
-                <input class="form-city" type="text" id="form-city" name="form-city"><br>
+                <input class="form-city formInput" type="text" id="form-city" name="form-city"><br>
             </div>
                 <!--  -->
                 <div class="flexContainer">
                 <label for="form-postCode">Post Code</label><br>
-                <input class="form-postCode" type="text" id="form-postCode" name="form-postCode"><br>
+                <input class="form-postCode formInput" type="text" id="form-postCode" name="form-postCode"><br>
             </div>
             <!--  -->
             <div class="flexContainer">
                 <label for="form-country">Country</label><br>
-                <input class="form-country" type="text" id="form-country" name="form-country"><br>
+                <input class="form-country formInput" type="text" id="form-country" name="form-country"><br>
             </div>
             </div>
             </div>
@@ -67,17 +67,17 @@
             <div class="location-container">
                 <div class="flexContainer">
                 <label for="form-city2">City</label><br>
-                <input class="form-city2" type="text" id="form-city2" name="form-city2"><br>
+                <input class="form-city2 formInput" type="text" id="form-city2" name="form-city2"><br>
             </div>
                 <!--  -->
                 <div class="flexContainer">
                 <label for="form-postCode2">Post Code</label><br>
-                <input class="form-postCode2" type="text" id="form-postCode2" name="form-postCode2"><br>
+                <input class="form-postCode2 formInput" type="text" id="form-postCode2" name="form-postCode2"><br>
             </div>
             <!--  -->
             <div class="flexContainer">
                 <label for="form-country2">Country</label><br>
-                <input class="form-country2" type="text" id="form-country2" name="form-country2"><br>
+                <input class="form-country2 formInput" type="text" id="form-country2" name="form-country2"><br>
             </div>
             </div>
 
@@ -111,13 +111,14 @@
                     <P class="item-header-price">Price</P>
                     <p class="item-header-total">Total</p>
                 </div>
-                <div class="item">
+                <!-- <div class="itemCard">
                     <input class="item-list-name" type="text" id="item-list-name" name="item-list-name">
                     <input class="item-list-qty" type="text" id="item-list-qty" name="item-list-qty">
                     <input class="item-list-price" type="text" id="item-list-price" name="item-list-price">
                     <input class="item-list-total" type="text" id="item-list-total" name="item-list-total"><br>
                     <img class="delete-item" src="starter-code\assets\icon-delete.svg" alt="bin">
-                </div>
+                </div> -->
+                
             </div>
             <button class="new-item-btn">+ Add New Item</button>
             </div>
@@ -127,6 +128,8 @@
                 <div class="draft-save">
                     <button class="Draft">Save as Draft</button>
                     <button class="Save">Save & Send</button>
+                    <button class="Cancel">Cancel</button>
+                    <button class="SaveChanges">Save Changes</button>
                 </div>
             </div>
         </div>
@@ -141,13 +144,14 @@
                 <div class="invoice-nav">
                     <div class="invoice-Counter">
                         <h1>Invoices</h1>
-                        <p>There are <span>7</span> total Invoices</p>
+                        <p>There are <span class="counter">7</span> total Invoices</p>
                     </div>
 
                     <div class="createInvoice">
                         <label for="status">Filter By Status</label>
                         <select name="status" id="status" style="background:transparent; border:0px; padding:0px;">
                             <option></option>
+                            <option value="All">All</option>
                             <option value="Paid">Paid</option>
                             <option value="Pending">Pending</option>
                             <option value="Draft">Draft</option>
@@ -157,7 +161,7 @@
                 </div>
 
                 <div class="invoices">
-                    <div class="invoice">
+                    <!-- <div class="invoice">
                         <p class="invoice-id">#RT3080</p>
                         <P class="invoice-due">Due 19 Aug 2021</P>
                         <p class="customer-name">Jensen Haung</p>
@@ -200,7 +204,7 @@
                             <img class="edit" src="starter-code\assets\icon-arrow-right.svg" alt="edit arrow">
                         </div>
                         <button class="editbutton">Edit</button>
-                    </div>
+                    </div> -->
                 </div>
                 
 
@@ -301,6 +305,6 @@
             
         </div>
     </div>
-    <script src="app.js"></script>
+    <script type="module"  src="app.js"></script>
 </body>
 </html>
