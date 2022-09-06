@@ -67,7 +67,10 @@ body{
 
 .form::-webkit-scrollbar {
     display: none;
+    -webkit-overflow-scrolling: touch;
 }
+
+
 
 .form h1{
     margin: 40px 0px;
@@ -431,7 +434,7 @@ margin: 0;
 /* container which all the invoices can be veiwed as well as for creating and filtering invoices */
 
 .invoice-Container{
-    width: 90%;
+    width: 80%;
     height: 99%;
     margin: 0px auto;
     transition: 1s ease-in-out;
@@ -588,6 +591,7 @@ align-items: flex-start;
 .edit{
     width: 5%;
     margin-left: 20px;
+    cursor: pointer;
 }
 
 .editbutton{
