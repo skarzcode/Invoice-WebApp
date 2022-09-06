@@ -12,6 +12,9 @@ let counter = 0;
 const url = "starter-code/data.json";
 let res;
 let globalId;
+let listItems = (name,quantity,price,total) =>{
+    return{name,quantity,price,total};
+};
 
 // test doms
 const testArr = [];
@@ -90,24 +93,75 @@ function newIteminput(){
     newItemName.classList.add("item-list-name"); 
     newItemContainer.appendChild(newItemName);
     let newItemQty = document.createElement("input");
-    newItemQty.type = "text";
+    newItemQty.type = "number";
+    newItemQty.value = 0;
     newItemQty.classList.add("item-list-qty"); 
     newItemContainer.appendChild(newItemQty);
     let newItemPrice = document.createElement("input");
-    newItemPrice.type = "text";
+    newItemPrice.type = "number";
+    newItemPrice.value = "0.00";
     newItemPrice.classList.add("item-list-price"); 
     newItemContainer.appendChild(newItemPrice);
-    let newItemTotal = document.createElement("input");
-    newItemTotal.type = "text";
+    let totalContainer = document.createElement("div");
+    totalContainer.classList.add("totalinput");
+    newItemContainer.appendChild(totalContainer);
+    let pound = document.createElement("p");
+    pound.innerHTML = "£";
+    pound.classList.add("pound");
+    totalContainer.appendChild(pound);
+    let newItemTotal = document.createElement("p");
     newItemTotal.classList.add("item-list-total"); 
-    newItemContainer.appendChild(newItemTotal);
+    newItemTotal.innerHTML = newItemPrice.value;
+    totalContainer.appendChild(newItemTotal);
     let newBinImg = document.createElement("img");
     newBinImg.src = "starter-code/assets/icon-delete.svg";
     newBinImg.classList.add("delete-item");
     newItemContainer.appendChild(newBinImg);
 
+    newItemPrice.addEventListener("input", function(){
+       let total = newItemPrice.value * newItemQty.value;
+        newItemTotal.innerHTML = `${total.toFixed(2)}`;
+    })
+
+    newItemQty.addEventListener("input", function(){
+        let total = newItemPrice.value * newItemQty.value;
+        newItemTotal.innerHTML = `${total.toFixed(2)}`;
+    })
+
     newBinImg.addEventListener("click", function(){
-        newItemContainer.remove();
+        let data = JSON.parse(localStorage.getItem("data"));
+        newBinImg.id = newItemName.value;
+        // console.log(newBinImg.id)
+        // console.log(newItemName.value);
+if(data){
+data.forEach(currObj => {
+                currObj.items.forEach(currItem => {
+                    if (currItem.name == newBinImg.id){
+                     let objIndex = currObj.items.indexOf(currItem);
+                     currObj.items.splice(objIndex,1);
+                      newItemContainer.remove();
+                      localStorage.setItem("data", JSON.stringify(data));
+                        
+                    }
+                })
+            })
+        
+} else{
+    let data = JSON.parse(localStorage.getItem("data"));
+    
+            data.forEach(currObj => {
+                currObj.items.forEach(currItem => {
+                    if (currItem.name == newBinImg.id){
+                     let objIndex = currObj.items.indexOf(currItem);
+                     currObj.items.splice(objIndex,1);
+                      newItemContainer.remove();
+                      localStorage.setItem("data", JSON.stringify(data));
+                        
+                    }
+                })
+            })
+}
+       
     })
 }
 
@@ -118,18 +172,16 @@ formDomElements.newItemBtn.addEventListener("click", function(){
 
 // factory func to create invoice objects
 const InvoiceObj = (id,CreatedAt,paymentDue,description,clientName,clientEmail, fromAddress, fromCity, fromPostCode, fromCountry, toAddress, toCity, toPostCode, toCountry, total) => {
-    let listItems = (name,quantity,price,total) =>{
-        return{name,quantity,price,total};
-    };
+
 
     const items = [];
 
         for(let i = 0; i<itemName.length; i++){
-            let currentList = listItems(itemName[i].value,itemQty[i].value,itemPrice[i].value);
+            let currentList = listItems(itemName[i].value,itemQty[i].value,itemPrice[i].value,(itemQty[i].value * itemPrice[i].value));
             items.push(currentList);
         };
 
-    let status = "Pending";
+    let status = "pending";
 
     return { id,
         CreatedAt,
@@ -206,6 +258,39 @@ function renderInvoice (curr){
     seeInvoice.src = "starter-code/assets/icon-arrow-right.svg";
     seeInvoice.classList.add("edit");
     statusContainer.appendChild(seeInvoice);
+    let btnEdit = document.createElement("button");
+    btnEdit.classList.add("editbutton");
+    btnEdit.innerHTML = "View";
+    invoiceCard.appendChild(btnEdit);
+
+    btnEdit.addEventListener("click", function(){
+        invoiceContainer.classList.add("slideout");
+        descriptionContainer.classList.add("slidein");
+        let cardId = curr.id;
+
+        let data = JSON.parse(localStorage.getItem("data"));
+        if(data){
+            data.forEach((currobj) => {
+                if(currobj.id == invoiceCard.id){
+                 globalId = data.indexOf(currobj)
+                }
+            })
+            console.log(cardId);
+            updateInvoiceDescription(data[globalId]);
+        } else{
+            let data = JSON.parse(localStorage.getItem("data"));
+            data.forEach((currobj) => {
+                if(currobj.id == invoiceCard.id){
+                 globalId = data.indexOf(currobj)
+                }
+            })
+            console.log(cardId);
+            updateInvoiceDescription(data[globalId]);
+        }
+        console.log(globalId)
+        console.log(data[globalId]);
+    })
+    // 
     invoiceCard.addEventListener("click", function(){
         invoiceContainer.classList.add("slideout");
         descriptionContainer.classList.add("slidein");
@@ -221,15 +306,17 @@ function renderInvoice (curr){
             console.log(cardId);
             updateInvoiceDescription(data[globalId]);
         } else{
-            res.forEach((currobj) => {
+            let data = JSON.parse(localStorage.getItem("data"));
+            data.forEach((currobj) => {
                 if(currobj.id == invoiceCard.id){
-                 globalId = res.indexOf(currobj)
+                 globalId = data.indexOf(currobj)
                 }
             })
             console.log(cardId);
-            updateInvoiceDescription(res[globalId]);
+            updateInvoiceDescription(data[globalId]);
         }
         console.log(globalId)
+        console.log(data[globalId]);
     })
 
     invoiceDomElements.filterStatus.addEventListener("click", function(){
@@ -277,6 +364,11 @@ function updateInvoiceDescription(curr){
     invoiceDescriptionDomElements.senderAddress.senderCity.innerHTML = curr.clientAddress.city;
     invoiceDescriptionDomElements.senderAddress.senderCity.innerHTML = curr.clientAddress.postCode;
     invoiceDescriptionDomElements.senderAddress.senderCountry.innerHTML = curr.clientAddress.country;
+    let oldRecipt = document.querySelectorAll(".recipt");
+
+    oldRecipt.forEach(recipt => {
+        recipt.remove();
+    });
     curr.items.forEach((current) =>{
         let reciptCard = document.createElement("div");
         reciptCard.classList.add("recipt");
@@ -291,13 +383,22 @@ function updateInvoiceDescription(curr){
         reciptCard.appendChild(reciptQty);
         let reciptPrice = document.createElement("p");
         reciptPrice.classList.add("item-price");
-        reciptPrice.innerHTML = `£ ${current.price}`;
+        reciptPrice.innerHTML = `${current.price}`;
         reciptCard.appendChild(reciptPrice);
         let recipttotal = document.createElement("p");
         recipttotal.classList.add("item-total");
-        recipttotal.innerHTML = `£${current.total}`;
+        recipttotal.innerHTML = current.total;
         reciptCard.appendChild(recipttotal);
+        invoiceDescriptionDomElements.billTotal.innerHTML = "£";
     })
+    let totalCount = 0;
+    for (let i = 0; i < curr.items.length; i++){
+        totalCount +=  parseFloat(curr.items[i].total);
+    }
+
+    invoiceDescriptionDomElements.billTotal.innerHTML += totalCount
+    curr.total = totalCount;
+    console.log(totalCount)
 
 
 }
@@ -318,9 +419,16 @@ function clearForm(){
     formDomElements.dateDue.value = "";
     formDomElements.projectDescription.value = "";
      for(let i=0; i<itemName.length; i++){
-        document.getElementsByClassName("itemCard")[i].remove();
-        
+        itemName[i].value = "";
+        itemQty[i].value = "";
+        itemPrice[i].value = "";
+        itemTotal[i].innerHTML = "";
     }
+    let removeInputForm = document.querySelectorAll(".itemCard");
+
+        for (let i = 0; i < removeInputForm.length; i++){
+            removeInputForm[i].remove()
+        }
 }
 
 // function to update invoices 
@@ -339,14 +447,29 @@ function updateInvoice (curr){
     curr.createdAt = formDomElements.dateMade.value;
     curr.paymentDue = formDomElements.dateDue.value;
     curr.description = formDomElements.projectDescription.value;
-    for(let i=0; i<itemName.length; i++){
-        curr.items[i].name = itemName[i].value;
-        curr.items[i].quantity = itemQty[i].value;
-        curr.items[i].price = itemPrice[i].value;
-        curr.items[i].total = itemTotal[i].value;
-    }
+    let count = itemName.length - curr.items.length + 1;
+    console.log(count);
+    for (let i = 1; i < count; i++){
+        let itemIndex = itemName.length - i;
+        let NewList = listItems(itemName[itemIndex].value,itemQty[itemIndex].value,itemPrice[itemIndex].value,itemTotal[itemIndex].innerHTML);
+            curr.items.push(NewList);
 }
 
+for (let i = 0; i< curr.items.length; i++){
+curr.items[i].name = itemName[i].value;
+curr.items[i].quantity = itemQty[i].value;
+curr.items[i].price = itemPrice[i].value;
+curr.items[i].total = itemTotal[i].innerHTML;
+}
+let bin = document.getElementsByClassName("delete-item");
+
+// for (let i = 0; i<bin.length; i++){
+//     bin[i].id = itemName[i].value;
+//     console.log(bin[i].id)
+// }
+
+localStorage.setItem("data", JSON.stringify(data));
+}
 
 // function to pre populate the form once user presses edit.
 function populateForm (curr){
@@ -363,15 +486,30 @@ function populateForm (curr){
     formDomElements.dateMade.value = curr.createdAt;
     formDomElements.dateDue.value = curr.paymentDue;
     formDomElements.projectDescription.value = curr.description;
+
+
     curr.items.forEach(current =>{
         newIteminput()
+        console.log("new one")
     })
-    for(let i=0; i<itemName.length; i++){
+
+    for(let i=0; i < curr.items.length; i++){
         itemName[i].value = curr.items[i].name;
         itemQty[i].value = curr.items[i].quantity;
         itemPrice[i].value = curr.items[i].price;
-        itemTotal[i].value = curr.items[i].total;
+        itemTotal[i].innerHTML = curr.items[i].total;
+        console.log(i);
+        
     }
+
+ 
+
+    let bin = document.getElementsByClassName("delete-item");
+
+// for (let i = 0; i<bin.length; i++){
+//     bin[i].id = itemName[i].value;
+//     console.log(bin[i].id)
+// }
     
     
 }
@@ -412,38 +550,37 @@ function formValidation(){
 
 
 formDomElements.saveBtn.addEventListener("click", function(){
-    if(formDomElements.fromAddress.value == ""||
-    formDomElements.fromCity.value == ""||
-    formDomElements.fromPostCode.value == ""||
-    formDomElements.fromCountry.value == ""||
-    formDomElements.toAddress.value == ""||
-    formDomElements.toCity.value == ""||
-    formDomElements.toPostCode.value == ""||
-    formDomElements.toCountry.value == ""||
-    formDomElements.clientName.value == ""||
-    formDomElements.clientEmail.value == ""||
-    formDomElements.dateMade.value == ""||
-    formDomElements.dateDue.value == ""||
-    formDomElements.projectDescription.value == ""){
-        formValidation();
-        console.log("not working");
-    } else{
-        testobj = InvoiceObj("TY9145", formDomElements.dateMade.value, formDomElements.dateDue.value, formDomElements.projectDescription.value, formDomElements.clientName.value, formDomElements.clientEmail.value,formDomElements.fromAddress.value, formDomElements.fromCity.value, formDomElements.fromPostCode.value, formDomElements.fromCountry.value, formDomElements.toAddress.value, formDomElements.toCity.value, formDomElements.toPostCode.value, formDomElements.toCountry.value, "20000");
+
+        let totalCount = 0;
+        for (let i = 0; i < itemTotal.length; i++){
+            totalCount +=  parseFloat(itemTotal[i].innerHTML);
+        }
+    
+        invoiceDescriptionDomElements.billTotal.innerHTML += totalCount
+        console.log(totalCount)
+        testobj = InvoiceObj("TY9145", formDomElements.dateMade.value, formDomElements.dateDue.value, formDomElements.projectDescription.value, formDomElements.clientName.value, formDomElements.clientEmail.value,formDomElements.fromAddress.value, formDomElements.fromCity.value, formDomElements.fromPostCode.value, formDomElements.fromCountry.value, formDomElements.toAddress.value, formDomElements.toCity.value, formDomElements.toPostCode.value, formDomElements.toCountry.value, totalCount);
         let data = JSON.parse(localStorage.getItem("data"));
         if(data){
          data.push(testobj);
             localStorage.setItem("data", JSON.stringify(data))
          } else{
-         res.push(testobj);
-         localStorage.setItem("data", JSON.stringify(res))
+        localStorage.setItem("data", JSON.stringify(data))
+         data.push(testobj);
+         localStorage.setItem("data", JSON.stringify(data))
         };
+        clearForm();
         renderInvoice(testobj);
         counter++;
         invoiceDomElements.invoiceCounter.innerHTML = counter;
         formContainer.classList.remove("displayForm");
-    }
+        let removeInputForm = document.querySelectorAll(".itemCard");
 
-    // 
+        for (let i = 0; i < removeInputForm.length; i++){
+            removeInputForm[i].remove()
+        }
+        
+
+        
    
 })
 
@@ -495,13 +632,14 @@ currbtn.addEventListener("click", function(){
         
 
      } else{
-        if(res[globalId].status == "pending"){
-            res[globalId].status = "paid";
+        let data = JSON.parse(localStorage.getItem("data"));
+        if(data[globalId].status == "pending"){
+            data[globalId].status = "paid";
         invoiceDescriptionDomElements.statusContainer2.style.backgroundColor = "rgba(147, 250, 165,0.15)";
         invoiceDescriptionDomElements.statusInvoice.style.color = "green";
         invoiceDescriptionDomElements.dot2.style.backgroundColor = "green";
         }
-         localStorage.setItem("data", JSON.stringify(res))
+         localStorage.setItem("data", JSON.stringify(data))
      }
 
 })
@@ -538,14 +676,25 @@ invoiceDescriptionDomElements.backBtn.addEventListener("click", function(){
     if(data){
         data.forEach(current => {
          renderInvoice(current);
+         localStorage.setItem("data", JSON.stringify(data))
         });
         console.log("exists");
     } else{
         reqData(); 
         console.log("does not exist");
+        localStorage.setItem("data", JSON.stringify(res))
     };
     globalId = "";
-    console.log(globalId)
+    console.log(globalId);
+    console.log(data);
+
+    let oldRecipt = document.querySelectorAll(".recipt");
+
+    oldRecipt.forEach(recipt => {
+        recipt.remove();
+    });
+    
+    
 
 })
 
@@ -567,11 +716,18 @@ btn.addEventListener("click", function(){
     formDomElements.saveBtn.classList.add("buttonDisplayNone");
     formDomElements.cancelBtn.classList.add("buttonDisplay");
     formDomElements.saveChangebtn.classList.add("buttonDisplay");
+    let data = JSON.parse(localStorage.getItem("data"));
+    if(data){
+        console.log(data[globalId]);
+    } else{
+        let data = JSON.parse(localStorage.getItem("data"));
+        console.log(data[globalId]);
+    }
     formDomElements.cancelBtn.addEventListener("click", function(){
         formContainer.classList.remove("displayForm");
         clearForm();
         for(let i=0; i<itemName.length; i++){
-            document.getElementsByClassName("itemCard")[i].remove();
+            document.querySelectorAll("itemCard")[i].remove();
         };
     })
     formDomElements.saveChangebtn.addEventListener("click", function(){
@@ -585,11 +741,12 @@ btn.addEventListener("click", function(){
            
     
         } else{
-            updateInvoice(res[globalId]);
-            updateInvoiceDescription(res[globalId]);
-            console.log(res);
-            console.log(res[globalId]);
-            localStorage.setItem("data", JSON.stringify(res))
+            let data = JSON.parse(localStorage.getItem("data"));
+            updateInvoice(data[globalId]);
+            updateInvoiceDescription(data[globalId]);
+            console.log(data);
+            console.log(data[globalId]);
+            localStorage.setItem("data", JSON.stringify(data))
         }
     })
 
@@ -597,10 +754,9 @@ btn.addEventListener("click", function(){
     if(data){
         populateForm(data[globalId])
         console.log(globalId); 
-
-    } else{
-        populateForm(res[globalId]);
-        console.log(globalId); 
+    } else {
+        let data = JSON.parse(localStorage.getItem("data"));
+        populateForm(data[globalId])
     }
 })
 });
@@ -630,6 +786,8 @@ if(data){
 } else{
     reqData(); 
     console.log("does not exist");
+    counter = 7;
+    invoiceDomElements.invoiceCounter.innerHTML = counter;
 }
 
 // setTimeout(() => {
