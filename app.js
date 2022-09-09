@@ -9,6 +9,8 @@ const itemName = document.getElementsByClassName("item-list-name");
 const itemQty = document.getElementsByClassName("item-list-qty");
 const itemPrice = document.getElementsByClassName("item-list-price");
 const itemTotal = document.getElementsByClassName("item-list-total");
+const validationMsg = document.querySelector(".validationMsg");
+const validationMsg2 = document.querySelector(".validationMsg2");
 let counter = 0;
 const lightAndDarkToggle = document.querySelector(".LightAndDarkSwitch");
 const url = "starter-code/data.json";
@@ -356,6 +358,9 @@ function renderInvoice (curr){
             })
             console.log(cardId);
             updateInvoiceDescription(data[globalId]);
+            if(data[globalId].items.length == 0){
+                invoiceDescriptionDomElements.billTotal.innerHTML = "£0";
+            }
         } else{
             let data = JSON.parse(localStorage.getItem("data"));
             data.forEach((currobj) => {
@@ -365,6 +370,9 @@ function renderInvoice (curr){
             })
             console.log(cardId);
             updateInvoiceDescription(data[globalId]);
+            if(data[globalId].items.length == 0){
+                invoiceDescriptionDomElements.billTotal.innerHTML = "£0";
+            }
         }
         console.log(globalId)
         console.log(data[globalId]);
@@ -591,25 +599,45 @@ function populateForm (curr){
 function formValidation(){
     // let formValid = document.querySelectorAll(".formValidation");
     let spreadArray = [...document.querySelectorAll(".formValidation")];
+    let email = document.querySelector(".client-email");
 
     for(let i =0; i<spreadArray.length; i++){
-        if(spreadArray[i].value.length === 0){
+        if(spreadArray[i].value.length === 0 || email.value.indexOf('@') == -1 || email.value.indexOf('.com') == -1 || email.value.length < 8 ){
             spreadArray[i].classList.add("Validation");
+            email.classList.add("Validation")
 
         } else{
             spreadArray[i].classList.remove("Validation")
+            email.classList.remove("Validation")
         }
     }
     const Valid = (element) => element.classList.contains('Validation');
-        if(spreadArray.some(Valid)){
+        if(spreadArray.some(Valid) || email.value.indexOf('@') == -1 || email.value.indexOf('.com') == -1 || email.value.length < 8 ){
             return false;
         } else{return true;}
 }
 
 
 formDomElements.saveBtn.addEventListener("click", function(){
+    let email = document.querySelector(".client-email");
+
+    if(email.value.indexOf('@') == -1 || email.value.indexOf('.com') == -1 || email.value.length < 14 ){
+      console.log("test not passed")
+      validationMsg2.classList.add("showValidationMsg");
+      setTimeout(() => {
+        validationMsg2.classList.remove("showValidationMsg");   
+    }, 5000);
+    } else if (email.value.indexOf('@') > -1 || email.value.indexOf('.com') > -1 || email.value.length >= 8 ){
+        console.log("all tst passed")
+    }
+
     if (formValidation() == false){
         // Error
+        validationMsg.classList.add("showValidationMsg");
+
+        setTimeout(() => {
+            validationMsg.classList.remove("showValidationMsg");   
+        }, 5000);
         console.log("form not filled")
     } else{
         console.log("form filled");
@@ -847,12 +875,24 @@ btn.addEventListener("click", function(){
                
         
             } else{
-                let data = JSON.parse(localStorage.getItem("data"));
-                updateInvoice(data[globalId]);
-                updateInvoiceDescription(data[globalId]);
-                console.log(data);
-                console.log(data[globalId]);
-                localStorage.setItem("data", JSON.stringify(data))
+                let email = document.querySelector(".client-email");
+
+                if(email.value.indexOf('@') == -1 || email.value.indexOf('.com') == -1 || email.value.length < 8 ){
+                    email.classList.add("Validation")
+                    validationMsg2.classList.add("showValidationMsg");
+                    setTimeout(() => {
+                      validationMsg2.classList.remove("showValidationMsg");   
+                  }, 5000);
+                } else{
+                    // if errors remove everything but the first line underneath out of the if statement checking if the email format is valid
+                    email.classList.remove("Validation")
+                    let data = JSON.parse(localStorage.getItem("data"));
+                    updateInvoice(data[globalId]);
+                    updateInvoiceDescription(data[globalId]);
+                    console.log(data);
+                    console.log(data[globalId]);
+                    localStorage.setItem("data", JSON.stringify(data))
+                }
             }
             formContainer.classList.remove("displayForm");
             

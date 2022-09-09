@@ -7,6 +7,16 @@
     <title>Invoice WebApp</title>
 </head>
 <body>
+    <div class="overlay">
+        <div class="confirmationDiv">
+            <h1>Confirm Deletion</h1>
+            <p>Are you sure you want to delete invoice #<span class="deletionId">XZ1234</span>? This action cannot be undone.</p>
+            <div class="buttons">
+                <button class="cancelConfirmation">Cancel</button>
+                <button class="deleteConfirmation">Delete</button>
+            </div>
+        </div>
+    </div>
     <div class="Outer-Container">
         <!-- section on the left containing logo,toggleSwitch avatar -->
         <aside class="nav">
@@ -130,6 +140,8 @@
             </div>
             <!--  -->
             <div class="form-button-container">
+                <p class="validationMsg">**All Fields Must Be Filled**</p>
+                <p class="validationMsg2">**Email Format Not Valid**</p>
                 <button class="Discard">Discard</button>
                 <div class="draft-save">
                     <button class="Draft">Save as Draft</button>

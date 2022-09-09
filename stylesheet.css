@@ -45,6 +45,7 @@ body{
     transition: 1s ease-in-out;
     overflow: scroll;
     scrollbar-width: none;
+    position: relative;
 }
 
 body::-webkit-scrollbar {
@@ -52,11 +53,78 @@ body::-webkit-scrollbar {
     -webkit-overflow-scrolling: touch;
 }
 
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirmationDiv{
+    width: 30%;
+    height: 30%;
+    background-color: var(--on-background);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 1vw;
+}
+
+.deletionId{
+    color: darkblue;
+    font-weight: bold;
+}
+.buttons{
+    width: 100%;
+    height: 33.3%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.deleteConfirmation{
+    background-color: red;
+    color: black;
+}
+
+.cancelConfirmation{
+    background-color: lightblue;
+    color: white
+}
+
+.confirmationDiv h1,p{
+    height: 30%;
+    width: 70%;
+    margin: 5px auto;
+}
+
+.confirmationDiv h1{
+    font-size: 2.3vw;
+}
+
+.confirmationDiv button{
+    width: 35%;
+    padding: 1vw 0px;
+    border: none;
+    border-radius: 1.5vw;
+    font-size: 1vw;
+    margin: 0px 10px;
+    font-size: 1vw;
+}
+
 .Outer-Container{
     width: 100%;
     height: 100%;
     display: flex;
     margin: 0 auto;
+    
 }
 
 .Outer-Container .nav{
@@ -354,6 +422,29 @@ color: var( --primary-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+}
+
+.validationMsg{
+    position: absolute;
+    top: 10;
+    left: 0;
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+
+.validationMsg2{
+    position: absolute;
+    top: 10;
+    right: 0;
+    color: red;
+    font-weight: bold;
+    display: none; 
+}
+
+.showValidationMsg{
+    display: block;
 }
 
 .Discard{
@@ -1211,6 +1302,54 @@ transition: 1s ease-in-out;
     font-size: 1.5vw;
 }
 
+.confirmationDiv{
+    width: 40%;
+    height: 30%;
+    border-radius: 1vw;
+}
+
+.buttons{
+    width: 100%;
+    height: 33.3%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.deleteConfirmation{
+    background-color: red;
+    color: black;
+}
+
+.cancelConfirmation{
+    background-color: lightblue;
+    color: white
+}
+
+.confirmationDiv h1,p{
+    height: 30%;
+    width: 70%;
+    margin: 5px auto;
+}
+
+.confirmationDiv h1{
+    font-size: 2.5vw;
+}
+
+.confirmationDiv p{
+    font-size: 1.5vw;
+}
+
+.confirmationDiv button{
+    width: 35%;
+    padding: 1vw 0px;
+    border: none;
+    border-radius: 1.5vw;
+    font-size: 1vw;
+    margin: 0px 10px;
+    font-size: 1.3vw;
+}
+
 
 }
 
@@ -1442,6 +1581,55 @@ transition: 1s ease-in-out;
     font-size: 2vw;
 }
 
+.confirmationDiv{
+    width: 40%;
+    height: 25%;
+    border-radius: 1vw;
+}
+
+.buttons{
+    width: 100%;
+    height: 33.3%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.deleteConfirmation{
+    background-color: red;
+    color: black;
+}
+
+.cancelConfirmation{
+    background-color: lightblue;
+    color: white
+}
+
+.confirmationDiv h1,p{
+    height: 30%;
+    width: 70%;
+    margin: 5px auto;
+}
+
+.confirmationDiv h1{
+    font-size: 2.8vw;
+}
+
+.confirmationDiv p{
+    font-size: 1.9vw;
+}
+
+.confirmationDiv button{
+    width: 35%;
+    padding: 1vw 0px;
+    border: none;
+    border-radius: 1.5vw;
+    font-size: 1vw;
+    margin: 0px 10px;
+    font-size: 1.5vw;
+}
+
+
     
 }
 
@@ -1595,6 +1783,54 @@ transition: 1s ease-in-out;
         font-size: 2vw;
     }
    
+    
+.confirmationDiv{
+    width: 50%;
+    height: 25%;
+    border-radius: 1vw;
+}
+
+.buttons{
+    width: 100%;
+    height: 33.3%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.deleteConfirmation{
+    background-color: red;
+    color: black;
+}
+
+.cancelConfirmation{
+    background-color: lightblue;
+    color: white
+}
+
+.confirmationDiv h1,p{
+    height: 30%;
+    width: 70%;
+    margin: 5px auto;
+}
+
+.confirmationDiv h1{
+    font-size: 3.2vw;
+}
+
+.confirmationDiv p{
+    font-size: 2.2vw;
+}
+
+.confirmationDiv button{
+    width: 35%;
+    padding: 1vw 0px;
+    border: none;
+    border-radius: 1.5vw;
+    font-size: 1vw;
+    margin: 0px 10px;
+    font-size: 1.8vw;
+}
 
   
 }
@@ -1773,6 +2009,55 @@ transition: 1s ease-in-out;
     font-size: 6vw;
   
 }
+
+
+.confirmationDiv{
+    width: 60%;
+    height: 25%;
+    border-radius: 1vw;
+}
+
+.buttons{
+    width: 100%;
+    height: 33.3%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.deleteConfirmation{
+    background-color: red;
+    color: black;
+}
+
+.cancelConfirmation{
+    background-color: lightblue;
+    color: white
+}
+
+.confirmationDiv h1,p{
+    height: 30%;
+    width: 70%;
+    margin: 5px auto;
+}
+
+.confirmationDiv h1{
+    font-size: 3.5vw;
+}
+
+.confirmationDiv p{
+    font-size: 2.7vw;
+}
+
+.confirmationDiv button{
+    width: 35%;
+    padding: 1vw 0px;
+    border: none;
+    border-radius: 1.5vw;
+    font-size: 1vw;
+    margin: 0px 10px;
+    font-size: 2.3vw;
+}
   
 }
 
@@ -1797,6 +2082,55 @@ transition: 1s ease-in-out;
 
 .createInvoice{
     width: 60%;
+}
+
+
+.confirmationDiv{
+    width: 80%;
+    height: 30%;
+    border-radius: 1vw;
+}
+
+.buttons{
+    width: 100%;
+    height: 33.3%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.deleteConfirmation{
+    background-color: red;
+    color: black;
+}
+
+.cancelConfirmation{
+    background-color: lightblue;
+    color: white
+}
+
+.confirmationDiv h1,p{
+    height: 30%;
+    width: 70%;
+    margin: 5px auto;
+}
+
+.confirmationDiv h1{
+    font-size: 4vw;
+}
+
+.confirmationDiv p{
+    font-size: 3.5vw;
+}
+
+.confirmationDiv button{
+    width: 35%;
+    padding: 1vw 0px;
+    border: none;
+    border-radius: 1.5vw;
+    font-size: 1vw;
+    margin: 0px 10px;
+    font-size: 2.9vw;
 }
 
 
