@@ -826,6 +826,7 @@ btn.addEventListener("click", function(){
         for(let i=0; i<itemName.length; i++){
             document.querySelectorAll("itemCard")[i].remove();
         };
+        descriptionContainer.scrollTo(0,0);
     })
     formDomElements.saveChangebtn.addEventListener("click", function(){
         if (formValidation() == false){
@@ -890,6 +891,7 @@ btn.addEventListener("click", function(){
         setTimeout(() => {
             clearForm()
         }, 500);
+        descriptionContainer.scrollTo(0,0);
     })
 
 
