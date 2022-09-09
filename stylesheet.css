@@ -93,7 +93,7 @@ body::-webkit-scrollbar {
     transform-origin: left;
     transition: transform 500ms ease-in-out, background 1s ease-in-out;
     background-color: var(--on-background);
-    background-color: red;
+    background-color: yellow;
 }
 
 
@@ -1129,7 +1129,6 @@ transition: 1s ease-in-out;
 
     .nav .form-container {
         width: 80%;
-        height: auto;
         position: absolute;
         left: 0%;
         top: 100%;
@@ -1483,7 +1482,6 @@ transition: 1s ease-in-out;
 
     .nav .form-container {
         width: 100%;
-        height: auto;
     }
 
     .form {
