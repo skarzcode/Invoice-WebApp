@@ -40,6 +40,12 @@ body{
     min-height: 100vh;
     height: auto;
     transition: 1s ease-in-out;
+    overflow: scroll;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .Outer-Container{
