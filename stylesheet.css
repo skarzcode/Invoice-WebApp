@@ -117,7 +117,9 @@ body::-webkit-scrollbar {
     -webkit-overflow-scrolling: touch;
 }
 
-
+.form-h1{
+    height: auto;
+}
 
 
 .form h1{
@@ -578,14 +580,12 @@ align-items: flex-start;
     font-size: 1.3vw;
 }
 
+
+
 .invoice-Counter h1{
     font-size: 4vw;
-    margin: 5px 0px;
-}
-
-
-.invoice-Counter h1{
-    margin-left:10px;
+    margin: 0px 0px 10px 0px;
+    height: auto;
     color: var(--primary-color);
     transition: 1s ease-in-out;
 }
@@ -895,6 +895,10 @@ transition: 1s ease-in-out;
     
 }
 
+.proj-id-container p{
+    font-size: 1.2vw;
+}
+
 .clientAddress-container{
     width: 30%;
     height: 100%;
@@ -904,6 +908,12 @@ transition: 1s ease-in-out;
     justify-content: center;
     align-items: flex-end;
 }
+
+.clientAddress-container p{
+    font-size: 1.2vw;
+}
+
+
 
 .clientAddress-container p{
     margin: 3px 0px;
@@ -921,6 +931,7 @@ transition: 1s ease-in-out;
 .customer-info p{
     color: var(--primary-variant);
     transition: 1s ease-in-out;
+    font-size: 1.2vw;
 }
 
 .customer-info h1{
@@ -933,8 +944,33 @@ transition: 1s ease-in-out;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0px 50px;
+}
+
+.invoice-dates p,h1{
+    height: 25%;
+}
+
+
+.senderAddress-container .bill-to-p1{
+    height: 25%;
+}
+
+.senderAddress-container h1{
+    height: 25%;
+}
+
+.senderAddress-container .bill-to-p{
+    height: 15%;
+}
+
+.send-to p{
+    height: 25%;
+}
+
+.send-to h1{
+    height: 75%;
 }
 
 .senderAddress-container{
@@ -942,12 +978,12 @@ transition: 1s ease-in-out;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     margin: 0px 50px;
 }
 
 .senderAddress p{
-    margin-bottom: 3px;
+    margin:7px 0px;
 }
 
 .email-container{
@@ -955,17 +991,15 @@ transition: 1s ease-in-out;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .send-to{
     width: 100%;
-    height: 85.5%;
+    height: 100%;
 }
 
-.send-to h1{
-    margin: 20px 0px;
-}
+
 
 .project-recipt{
         width: 90%;
@@ -1109,8 +1143,17 @@ transition: 1s ease-in-out;
     font-size: 1.5vw;
 }
 
-.customer-info p{
-    margin: 0px;
+.senderAddress p {
+    margin: 7px 0px;
+    font-size: 1.6vw;
+}
+
+.clientAddress-container p{
+    font-size: 1.6vw;
+}
+
+.proj-id-container p{
+    font-size: 1.6vw;
 }
 
 .form {
@@ -1145,6 +1188,26 @@ transition: 1s ease-in-out;
     font-size: 4vw;
   
 }
+.customer-info {
+    width: 100%;
+    height: 25%;
+}
+
+.customer-info p {
+    font-size: 2vw;
+}
+
+.Invoice-description {
+    width: 85%;
+    height: 99%;
+
+}
+.invoice .invoice-status{
+    width: 60%;
+    height: 40%;
+    font-size: 1.5vw;
+}
+
 
 }
 
@@ -1251,7 +1314,7 @@ transition: 1s ease-in-out;
 
     .invoice .invoice-status{
         width: 60%;
-        font-size: 1.5vw;
+        font-size: 2vw;
     }
 
 
@@ -1356,6 +1419,24 @@ transition: 1s ease-in-out;
     padding: 1.4vw 0;
     font-size: 16px;
     
+}
+
+.customer-info {
+    width: 100%;
+    height: 25%;
+}
+
+.customer-info p {
+    font-size: 2vw;
+  
+}
+
+.clientAddress-container p{
+    font-size: 2vw;
+}
+
+.proj-id-container p{
+    font-size: 2vw;
 }
 
     
@@ -1493,6 +1574,23 @@ transition: 1s ease-in-out;
         font-size: 3vw;
     }
 
+    .customer-info {
+        width: 100%;
+        height: 30%;
+    }
+
+    .customer-info p {
+        font-size: 2vw;
+        margin: 5px 0px;
+    }
+
+    .clientAddress-container p{
+        font-size: 2vw;
+    }
+    
+    .proj-id-container p{
+        font-size: 2vw;
+    }
    
 
   

@@ -413,7 +413,7 @@ function updateInvoiceDescription(curr){
     invoiceDescriptionDomElements.customerEmail.innerHTML = curr.clientEmail;
     invoiceDescriptionDomElements.senderAddress.senderStreet.innerHTML = curr.clientAddress.street;
     invoiceDescriptionDomElements.senderAddress.senderCity.innerHTML = curr.clientAddress.city;
-    invoiceDescriptionDomElements.senderAddress.senderCity.innerHTML = curr.clientAddress.postCode;
+    invoiceDescriptionDomElements.senderAddress.senderPostCode.innerHTML = curr.clientAddress.postCode;
     invoiceDescriptionDomElements.senderAddress.senderCountry.innerHTML = curr.clientAddress.country;
     let oldRecipt = document.querySelectorAll(".recipt");
 
