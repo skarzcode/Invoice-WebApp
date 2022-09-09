@@ -4,11 +4,13 @@ const invoiceContainer = document.querySelector(".invoice-Container");
 const invoiceBody = document.querySelector(".invoice-body");
 const descriptionContainer = document.querySelector(".Invoice-description");
 const formContainer = document.querySelector(".form-container");
+const formScroll = document.querySelector(".form");
 const itemName = document.getElementsByClassName("item-list-name");
 const itemQty = document.getElementsByClassName("item-list-qty");
 const itemPrice = document.getElementsByClassName("item-list-price");
 const itemTotal = document.getElementsByClassName("item-list-total");
 let counter = 0;
+const lightAndDarkToggle = document.querySelector(".LightAndDarkSwitch");
 const url = "starter-code/data.json";
 let res;
 let globalId;
@@ -18,7 +20,7 @@ let listItems = (name,quantity,price,total) =>{
 
 // test doms
 const testArr = [];
-let testobj;
+let currobj;
 
 function reqData(){
     fetch(url)
@@ -48,8 +50,42 @@ function reqData(){
     }
 
     invoiceDomElements.invoiceCounter.innerHTML = counter;
+
+    function switchTheme(event){
+        if(event.target.checked){
+            document.documentElement.setAttribute('data-theme', 'dark');
+            document.documentElement.style.transition = "all 2s"
+            localStorage.setItem('theme', 'dark');
+            console.log("checked")
+        } else{
+            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.style.transition = "all 2s"
+            localStorage.setItem('theme', 'light');
+            console.log("not checked")
+        }
+    
+        
+    }
+
+    lightAndDarkToggle.addEventListener('change', switchTheme);
+
     
  
+function idGenerator (){
+    let letters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    let numbers = [0,1,2,3,4,5,6,7,8,9];
+    let id = "";
+    for(let i = 0; i<2; i++){
+    let index = [Math.floor((Math.random()*letters.length))];
+    id += letters[index];
+    }
+    for(let i = 0; i<4; i++){
+        let index = [Math.floor((Math.random()*numbers.length))];
+        id += numbers[index];
+        }
+        return id;
+}
+
 
     
 
@@ -130,7 +166,19 @@ function newIteminput(){
 
     newBinImg.addEventListener("click", function(){
         let data = JSON.parse(localStorage.getItem("data"));
-        newBinImg.id = newItemName.value;
+        let currentItemNameIndex = [...document.querySelectorAll(".item-list-name")].indexOf(newItemName);
+        if(data[globalId] == undefined){
+            newItemContainer.remove();
+        }
+        else if(data[globalId].items[currentItemNameIndex] != undefined ){
+            data[globalId].items[currentItemNameIndex].name =  itemName[currentItemNameIndex].value;
+            newBinImg.id = itemName[currentItemNameIndex].value;
+        } else{
+            newItemContainer.remove();
+        }
+        // console.log(itemName[currentItemNameIndex].value)
+        // console.log(currentItemNameIndex);
+        // newBinImg.id = newItemName.value;
         // console.log(newBinImg.id)
         // console.log(newItemName.value);
 if(data){
@@ -161,6 +209,8 @@ data.forEach(currObj => {
                 })
             })
 }
+newItemContainer.remove();
+
        
     })
 }
@@ -171,7 +221,7 @@ formDomElements.newItemBtn.addEventListener("click", function(){
 });
 
 // factory func to create invoice objects
-const InvoiceObj = (id,CreatedAt,paymentDue,description,clientName,clientEmail, fromAddress, fromCity, fromPostCode, fromCountry, toAddress, toCity, toPostCode, toCountry, total) => {
+const InvoiceObj = (id,createdAt,paymentDue,description,clientName,clientEmail, fromAddress, fromCity, fromPostCode, fromCountry, toAddress, toCity, toPostCode, toCountry, total) => {
 
 
     const items = [];
@@ -184,7 +234,7 @@ const InvoiceObj = (id,CreatedAt,paymentDue,description,clientName,clientEmail, 
     let status = "pending";
 
     return { id,
-        CreatedAt,
+        createdAt,
         paymentDue,
         description,
         clientName,
@@ -215,6 +265,7 @@ function renderInvoice (curr){
     invoiceOuterContainer.appendChild(invoiceCard);
     let invoiceId = document.createElement("p");
     invoiceId.classList.add("invoice-id");
+    invoiceId.classList.add("firstLetter");
     invoiceId.innerHTML = curr.id;
     invoiceCard.appendChild(invoiceId);
     let invoiceDueDate = document.createElement("p");
@@ -249,8 +300,8 @@ function renderInvoice (curr){
         statusDot.style.backgroundColor = "green";
     } else if(statusP.innerHTML == "draft"){
         invoiceStatus.style.background = "rgba(40, 67, 135,0.15)";
-        statusP.style.color = "rgba(4, 59, 92)";
-        statusDot.style.backgroundColor = "rgba(4, 59, 92)";
+        statusP.style.color = "blue";
+        statusDot.style.backgroundColor = "blue";
 
     }
     invoiceStatus.appendChild(statusP);
@@ -400,6 +451,23 @@ function updateInvoiceDescription(curr){
     curr.total = totalCount;
     console.log(totalCount)
 
+    if(curr.status == "draft"){
+        invoiceDescriptionDomElements.statusInvoice.innerHTML = "draft";
+        invoiceDescriptionDomElements.statusContainer2.style.backgroundColor = "rgba(40, 67, 135,0.15)";
+        invoiceDescriptionDomElements.statusInvoice.style.color = "blue";
+        invoiceDescriptionDomElements.dot2.style.backgroundColor = "blue";
+    } else if(curr.status == "pending"){
+        invoiceDescriptionDomElements.statusInvoice.innerHTML = "pending";
+            invoiceDescriptionDomElements.statusContainer2.style.backgroundColor = "rgba(255,143,0,0.15)";
+                invoiceDescriptionDomElements.statusInvoice.style.color = "#FF8F00";
+                invoiceDescriptionDomElements.dot2.style.backgroundColor = "#FF8F00";
+    } else if(curr.status == "paid"){
+        invoiceDescriptionDomElements.statusInvoice.innerHTML = "paid";
+        invoiceDescriptionDomElements.statusContainer2.style.backgroundColor = "rgba(147, 250, 165,0.15)";
+        invoiceDescriptionDomElements.statusInvoice.style.color = "green";
+        invoiceDescriptionDomElements.dot2.style.backgroundColor = "green";
+    }
+
 
 }
 // function to clear the form
@@ -428,6 +496,11 @@ function clearForm(){
 
         for (let i = 0; i < removeInputForm.length; i++){
             removeInputForm[i].remove()
+        }
+        let spreadArray = [...document.querySelectorAll(".formValidation")];
+
+        for(let i =0; i<spreadArray.length; i++){
+            spreadArray[i].classList.remove("Validation");
         }
 }
 
@@ -516,40 +589,30 @@ function populateForm (curr){
 
 // function for form validation
 function formValidation(){
-    if(formDomElements.fromAddress.value == ""){
-        formDomElements.fromAddress.style.border = "solid red 3px";
-    } 
-    if(formDomElements.fromCity.value == ""){
-        formDomElements.fromCity.style.border = "solid red 3px";
-        let coordianates =  formDomElements.fromCity.getBoundingClientRect();
-    }if(formDomElements.fromPostCode.value == ""){
-        formDomElements.fromPostCode.style.border = "solid red 3px";
-    }if( formDomElements.fromCountry.value == ""){
-        formDomElements.fromCountry.style.border = "solid red 3px";
-    } if(formDomElements.toAddress.value == "") {
-        formDomElements.toAddress.style.border = "solid red 3px";
-    } if(formDomElements.toCity.value == ""){
-        formDomElements.toCity.style.border = "solid red 3px";
-    } if(formDomElements.toPostCode.value == ""){
-        formDomElements.toPostCode.style.border = "solid red 3px"
-    } if(formDomElements.toCountry.value == ""){
-        formDomElements.toCountry.style.border = "solid red 3px";
-    } if(formDomElements.clientName.value == ""){
-        formDomElements.clientName.style.border = "solid red 3px";
-    } if(formDomElements.clientEmail.value == ""){
-        formDomElements.clientEmail.style.border = "solid red 3px";
-    } if(formDomElements.dateMade.value == ""){
-        formDomElements.dateMade.style.border = "solid red 3px";
-    } if(formDomElements.dateDue.value == ""){
-        formDomElements.dateDue.style.border = "solid red 3px";
-    } if(formDomElements.projectDescription.value == ""){
-        formDomElements.projectDescription.style.border = "solid red 3px"
-    };
-        
+    // let formValid = document.querySelectorAll(".formValidation");
+    let spreadArray = [...document.querySelectorAll(".formValidation")];
+
+    for(let i =0; i<spreadArray.length; i++){
+        if(spreadArray[i].value.length === 0){
+            spreadArray[i].classList.add("Validation");
+
+        } else{
+            spreadArray[i].classList.remove("Validation")
+        }
+    }
+    const Valid = (element) => element.classList.contains('Validation');
+        if(spreadArray.some(Valid)){
+            return false;
+        } else{return true;}
 }
 
 
 formDomElements.saveBtn.addEventListener("click", function(){
+    if (formValidation() == false){
+        // Error
+        console.log("form not filled")
+    } else{
+        console.log("form filled");
 
         let totalCount = 0;
         for (let i = 0; i < itemTotal.length; i++){
@@ -558,18 +621,19 @@ formDomElements.saveBtn.addEventListener("click", function(){
     
         invoiceDescriptionDomElements.billTotal.innerHTML += totalCount
         console.log(totalCount)
-        testobj = InvoiceObj("TY9145", formDomElements.dateMade.value, formDomElements.dateDue.value, formDomElements.projectDescription.value, formDomElements.clientName.value, formDomElements.clientEmail.value,formDomElements.fromAddress.value, formDomElements.fromCity.value, formDomElements.fromPostCode.value, formDomElements.fromCountry.value, formDomElements.toAddress.value, formDomElements.toCity.value, formDomElements.toPostCode.value, formDomElements.toCountry.value, totalCount);
+        currobj = InvoiceObj(idGenerator(), formDomElements.dateMade.value, formDomElements.dateDue.value, formDomElements.projectDescription.value, formDomElements.clientName.value, formDomElements.clientEmail.value,formDomElements.fromAddress.value, formDomElements.fromCity.value, formDomElements.fromPostCode.value, formDomElements.fromCountry.value, formDomElements.toAddress.value, formDomElements.toCity.value, formDomElements.toPostCode.value, formDomElements.toCountry.value, totalCount);
         let data = JSON.parse(localStorage.getItem("data"));
         if(data){
-         data.push(testobj);
+         data.push(currobj);
             localStorage.setItem("data", JSON.stringify(data))
          } else{
-        localStorage.setItem("data", JSON.stringify(data))
-         data.push(testobj);
+        let data = JSON.parse(localStorage.getItem("data"));
+         data.push(currobj);
          localStorage.setItem("data", JSON.stringify(data))
         };
+        
         clearForm();
-        renderInvoice(testobj);
+        renderInvoice(currobj);
         counter++;
         invoiceDomElements.invoiceCounter.innerHTML = counter;
         formContainer.classList.remove("displayForm");
@@ -578,12 +642,46 @@ formDomElements.saveBtn.addEventListener("click", function(){
         for (let i = 0; i < removeInputForm.length; i++){
             removeInputForm[i].remove()
         }
-        
-
-        
-   
+    }
 })
 
+formDomElements.draftBtn.addEventListener("click", function(){
+    let totalCount = 0;
+    for (let i = 0; i < itemTotal.length; i++){
+        totalCount +=  parseFloat(itemTotal[i].innerHTML);
+    }
+
+    invoiceDescriptionDomElements.billTotal.innerHTML += totalCount
+    console.log(totalCount)
+    currobj = InvoiceObj(idGenerator(), formDomElements.dateMade.value, formDomElements.dateDue.value, formDomElements.projectDescription.value, formDomElements.clientName.value, formDomElements.clientEmail.value,formDomElements.fromAddress.value, formDomElements.fromCity.value, formDomElements.fromPostCode.value, formDomElements.fromCountry.value, formDomElements.toAddress.value, formDomElements.toCity.value, formDomElements.toPostCode.value, formDomElements.toCountry.value, totalCount);
+    currobj.status = "draft";
+    let data = JSON.parse(localStorage.getItem("data"));
+    if(data){
+     data.push(currobj);
+        localStorage.setItem("data", JSON.stringify(data))
+     } else{
+    let data = JSON.parse(localStorage.getItem("data"));
+     data.push(currobj);
+     localStorage.setItem("data", JSON.stringify(data))
+    };
+    
+    clearForm();
+    renderInvoice(currobj);
+    counter++;
+    invoiceDomElements.invoiceCounter.innerHTML = counter;
+    formContainer.classList.remove("displayForm");
+    let removeInputForm = document.querySelectorAll(".itemCard");
+
+    for (let i = 0; i < removeInputForm.length; i++){
+        removeInputForm[i].remove()
+    }
+})
+
+formDomElements.discardBtn.addEventListener("click", function(){
+    clearForm();
+    formContainer.classList.remove("displayForm");
+    formScroll.scrollTo(0,0);
+})
 
 
 const invoiceDescriptionDomElements = {
@@ -694,8 +792,7 @@ invoiceDescriptionDomElements.backBtn.addEventListener("click", function(){
         recipt.remove();
     });
     
-    
-
+    invoiceDescriptionDomElements.billTotal.innerHTML = "£";
 })
 
 invoiceDomElements.newInvoiceBtn.addEventListener("click", function(){
@@ -731,23 +828,68 @@ btn.addEventListener("click", function(){
         };
     })
     formDomElements.saveChangebtn.addEventListener("click", function(){
-        let data = JSON.parse(localStorage.getItem("data"));
-        if(data){
-            updateInvoice(data[globalId]);
-            updateInvoiceDescription(data[globalId]);
-            console.log(data);
-            console.log(data[globalId]);
-            localStorage.setItem("data", JSON.stringify(data))
-           
-    
-        } else{
+        if (formValidation() == false){
+            // Error
+            console.log("form not filled")
             let data = JSON.parse(localStorage.getItem("data"));
-            updateInvoice(data[globalId]);
-            updateInvoiceDescription(data[globalId]);
-            console.log(data);
-            console.log(data[globalId]);
-            localStorage.setItem("data", JSON.stringify(data))
+            if(data){
+                updateInvoice(data[globalId]);
+                updateInvoiceDescription(data[globalId]);
+                data[globalId].status = "draft";
+                invoiceDescriptionDomElements.statusInvoice.innerHTML = "draft";
+                invoiceDescriptionDomElements.statusContainer2.style.backgroundColor = "rgba(40, 67, 135,0.15)";
+                invoiceDescriptionDomElements.statusInvoice.style.color = "blue";
+                invoiceDescriptionDomElements.dot2.style.backgroundColor = "blue";
+                console.log(data);
+                console.log(data[globalId]);
+                localStorage.setItem("data", JSON.stringify(data))
+               
+        
+            } else{
+                let data = JSON.parse(localStorage.getItem("data"));
+                updateInvoice(data[globalId]);
+                updateInvoiceDescription(data[globalId]);
+                console.log(data);
+                console.log(data[globalId]);
+                localStorage.setItem("data", JSON.stringify(data))
+            }
+            formContainer.classList.remove("displayForm");
+            
+        } else{
+            
+            console.log("form filled")
+            let data = JSON.parse(localStorage.getItem("data"));
+            if(data){
+                updateInvoice(data[globalId]);
+                updateInvoiceDescription(data[globalId]);
+                data[globalId].status = "pending";
+                invoiceDescriptionDomElements.statusInvoice.innerHTML = "pending";
+                invoiceDescriptionDomElements.statusContainer2.style.backgroundColor = "rgba(255,143,0,0.15)";
+                    invoiceDescriptionDomElements.statusInvoice.style.color = "#FF8F00";
+                    invoiceDescriptionDomElements.dot2.style.backgroundColor = "#FF8F00";
+                console.log(data);
+                console.log(data[globalId]);
+                localStorage.setItem("data", JSON.stringify(data))
+               
+        
+            } else{
+                let data = JSON.parse(localStorage.getItem("data"));
+                updateInvoice(data[globalId]);
+                updateInvoiceDescription(data[globalId]);
+                console.log(data);
+                console.log(data[globalId]);
+                localStorage.setItem("data", JSON.stringify(data))
+            }
+            formContainer.classList.remove("displayForm");
         }
+
+        if(document.querySelectorAll(".recipt").length == 0){
+            invoiceDescriptionDomElements.billTotal.innerHTML = "£0";
+        }
+      
+        setTimeout(() => {
+            clearForm()
+        }, 500);
     })
 
 

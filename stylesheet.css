@@ -1,3 +1,34 @@
+/* These color Palletes will be passed to the root element which is Html */
+:root {
+    --primary-color: black;
+    --primary-variant: #858bb2;
+    --secondary-color: #f8f8fbb6;
+    --on-background: #f6f6f6;
+    --on-background-2: #FFFFFF;
+    --on-background-3: #373b52;
+    --on-background-4:#1E2139;
+}
+
+[data-theme="light"] {
+    --primary-color: black;
+    --primary-variant: #858bb2;
+    --secondary-color: #f8f8fbb6;
+    --on-background: #f6f6f6;
+    --on-background-2: #FFFFFF;
+    --on-background-3: #373b52;
+    --on-background-4:#1E2139;
+}
+
+[data-theme="dark"] {
+    --primary-color: white;
+    --primary-variant: #DFE3FA;
+    --secondary-color: #252945;
+    --on-background: #141625;
+    --on-background-2: #1E2139;
+    --on-background-3: #0C0E16;
+    --on-background-4:#f6f6f6;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -5,9 +36,10 @@
 }
 
 body{
-    background-color: #f6f6f6;
+    background-color: var(--on-background);
     min-height: 100vh;
     height: auto;
+    transition: 1s ease-in-out;
 }
 
 .Outer-Container{
@@ -33,7 +65,7 @@ body{
 .form-container{
     width: 400%;
     height: 100%;
-    background-color: wheat;
+    background-color: var(--on-background);
     position: absolute;
     left: 100%;
     z-index: 100;
@@ -49,7 +81,8 @@ body{
 .displayForm{
     transform: scale(1, 1);
     transform-origin: left;
-    transition: transform 400ms ease-in-out;
+    transition: transform 500ms ease-in-out, background 1s ease-in-out;
+    background-color: var(--on-background);
 }
 
 
@@ -57,13 +90,13 @@ body{
 .form{
     width: 90%;
     height: 100%;
-    background-color: white;
+    background-color: var(--on-background);
     overflow: scroll;
-    /* display: flex;
-    flex-direction: column; */
     font-size: 1vw;
-   
+    transition: transform 500ms ease-in-out,background 1s ease-in-out;
 }
+
+
 
 .form::-webkit-scrollbar {
     display: none;
@@ -77,7 +110,6 @@ body{
 }
 
 .bill-from{
-    background-color: rebeccapurple;
     margin: 10px 0px;
 }
 
@@ -115,12 +147,11 @@ body{
 .flexContainer input{
     width: 100%;
     border-radius: 5px;
-    border: solid gray 1px;
+    border: var( --primary-variant) solid 1px;
     padding: 0.9vw 0px;
 }
 
 .bill-to{
-    background-color: rebeccapurple;
     margin: 10px 0px;
 }
 
@@ -141,7 +172,6 @@ body{
 }
 
 .invoice-detail{
-    background-color: rebeccapurple;
   color: gray;
   margin: 10px 0px;
 }
@@ -165,19 +195,16 @@ body{
     width: 100%;
     padding: 0.9vw 0px;
     border-radius: 5px;
-    border: solid gray 1px;
 }
 
 .invoice-detail .form-project-description{
     width: 100%;
     padding: 0.9vw 0px;
     border-radius: 5px;
-    border: solid gray 1px;
     margin: 10px 0px;
 }
 
 .invoice-item-list{
-    background-color: rebeccapurple;
     width: 100%;
     height: auto;
 }
@@ -190,10 +217,12 @@ body{
 .item-header{
     width: 100%;
     height: auto;
-    background-color: white;
+    background-color: var(--on-background-2);
     display: flex;
     justify-content: space-between;
     padding: 10px 0px;
+    transition: 1s ease-in-out;
+    color: var( --primary-color);
 }
 
 .item-header p{
@@ -251,11 +280,13 @@ body{
     font-size: 1.3vw;
     color: black;
     overflow: scroll;
-    background-color: rgb(212, 206, 206);
-    border: solid black 1px;
     display: flex;  
     justify-content: flex-start;
     align-items: center;
+}
+
+.totalinput::-webkit-scrollbar {
+    display: none;
 }
 
 .pound{
@@ -266,6 +297,7 @@ body{
 .item-list-total{
 width: 90%;
 margin: 0;
+color: var( --primary-color);
 }
 
 .total::-webkit-scrollbar {
@@ -283,13 +315,21 @@ margin: 0;
     margin: 10px auto;
     font-size: 1vw;
     border: none;
-    background-color: #F6F6F6;
+    background-color: var(--on-background-4);
+    color: var(--on-background-2);
+    transition: 300ms ease-in-out;
+
 }
 
+.bill-header{
+    color: #7C5DFA;
+    font-weight: bold;
+}
+
+
 .form-button-container{
-    background-color: rebeccapurple;
     width: 100%;
-    height: 150px;
+    height: 20%;
     margin: 10px 0px;
     display: flex;
     justify-content: space-between;
@@ -342,6 +382,10 @@ margin: 0;
     display: none;
 }
 
+.Validation{
+    border: solid red 2px !important;
+}
+
 .buttonDisplayNone{
     display: none;
 }
@@ -349,6 +393,19 @@ margin: 0;
 .buttonDisplay{
     display: block;
 }
+
+.form input{
+    padding: 0.5vw 0;
+    color: var(--primary-color);
+    background-color: var( --on-background-2);
+    border: var( --primary-variant) solid 1px;
+    transition: 300ms ease-in-out;
+}
+
+.form input:focus {
+    outline: none !important;
+    border:1px solid white;
+  }
 
 .nav .logo-container{
     width: 100%;
@@ -402,9 +459,24 @@ margin: 0;
     border-bottom: solid gray 1px;
 }
 
+
 .light-dark-container .light-and-dark-toggle{
     width: 20%;
     object-fit: contain;
+}
+
+.light-dark-container .switch{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.switch input{
+    visibility: hidden;
+    position:absolute;
 }
 
 .avatar-container{
@@ -425,10 +497,12 @@ margin: 0;
     width: 92%;
     height: 100%;
     display: flex;
+    background-color: var(--on-background);
     justify-content: center;
     align-items: center;
     overflow: hidden;
     position: relative;
+    transition: 1s ease-in-out;
 }
 
 /* container which all the invoices can be veiwed as well as for creating and filtering invoices */
@@ -470,7 +544,8 @@ margin: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f6f6f6;
+    background-color: var(--on-background);
+    transition: 1s ease-in-out;
 }
 
 .invoice-Counter{
@@ -488,9 +563,16 @@ align-items: flex-start;
     margin: 5px 0px;
 }
 
-.invoice-Counter h1,p{
+
+.invoice-Counter h1{
     margin-left:10px;
+    color: var(--primary-color);
+    transition: 1s ease-in-out;
 }
+
+
+
+
 
 .createInvoice{
     width: 40%;
@@ -498,7 +580,11 @@ align-items: flex-start;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.createInvoice label{
+        color: var(--primary-color);
+        transition: 1s ease-in-out;
 }
 
 .createInvoice button{
@@ -536,8 +622,9 @@ align-items: flex-start;
     width: 100%;
     height: 80%;
     padding: 1px 0px;
-    background-color: #f6f6f6;
+    background-color: var(--on-background);
     overflow: scroll;
+    transition: 1s ease-in-out;
 }
 
 .invoices::-webkit-scrollbar {
@@ -547,13 +634,14 @@ align-items: flex-start;
 .invoice{
     width: 99%;
     height: 15%;
-    background-color: white;
+    background-color: var(--on-background-2);
     margin: 10px auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
     transition: 400ms ease-in;
+    transition: 1s ease-in-out;
 }
 
 .invoice:hover{
@@ -564,13 +652,21 @@ align-items: flex-start;
 .invoice .invoice-id{
     font-weight: bold;
     width: 25%;
+    color: var(--primary-color);
+    transition: 1s ease-in-out;
+    margin-left: 10px;
 }
 
 .invoice .invoice-amount{
     font-weight: bold;
   font-size: 1.7vw;
   width: 25%;
+  color: var(--primary-color);
+  transition: 1s ease-in-out;
+  margin-left: 10px;
 }
+
+
 
 .status-container{
     width: 30%;
@@ -582,10 +678,14 @@ align-items: flex-start;
 
 .invoice-due{
     width: 25%;
+    color: var(--primary-variant);
+    transition: 1s ease-in-out;
 }
 
 .customer-name{
     width: 25%;
+    color: var(--primary-variant);
+    transition: 1s ease-in-out;
 }
 
 .edit{
@@ -603,7 +703,7 @@ display: none;
 .invoice .invoice-status{
     background-color:  rgba(212, 189, 158, 0.15);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     width: 50%;
     height: 50%;
@@ -638,7 +738,8 @@ align-items: center;
 border-radius: 1vw;
 margin: 20px auto;
 overflow: hidden;
-background-color: white;
+background-color:var(--on-background-2);
+transition: 1s ease-in-out;
 }
 
 
@@ -691,14 +792,15 @@ background-color: white;
 
 .button-container button{
     font-size: 1vw;
+    transition: 1s ease-in-out;
 }
 
 .button-edit{
     width: 20%;
     height: 40%;
-    background-color: #dfe3fa;
+    background-color:#f8f8fbb6;
     border-radius: 1.5vw;
-    border: none;
+    border: solid #dfe3fa 1px;
     color: gray;
 }
 
@@ -731,8 +833,18 @@ height: auto;
 min-height: 80%;
 border-radius: 1vw;
 margin: 0px auto;
+background-color:var(--on-background-2);
+transition: 1s ease-in-out;
+}
 
-background-color: white;
+.invoice-body h1{
+    color: var(--primary-color);
+    transition: 1s ease-in-out;
+}
+
+.invoice-body p{
+    color: var(--primary-variant);
+    transition: 1s ease-in-out;
 }
 
 .project-info{
@@ -743,9 +855,7 @@ background-color: white;
     align-items: center;
 }
 
-.project-info p{
-    color: gray;
-}
+
 
 .proj-id-container{
     width: 30%;
@@ -785,13 +895,15 @@ background-color: white;
     margin: 10px 0px;
 }
 
+.customer-info p{
+    color: var(--primary-variant);
+    transition: 1s ease-in-out;
+}
+
 .customer-info h1{
     font-size: 1.8vw;
 }
 
-.customer-info p{
-    color: gray;
-}
 
 .invoice-dates{
     width: 20%;
@@ -837,9 +949,10 @@ background-color: white;
         height: auto;
         min-height: 20%;
         margin: 50px auto 0px auto;
-        background-color: #F6F6F6;
+        background-color: var( --on-background);
         border-top-left-radius: 10px;
         border-bottom-right-radius: 10px;
+        transition: 1s ease-in-out;
 }
 
 .recipt-header{
@@ -869,6 +982,15 @@ background-color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
+      color: var(--primary-color);
+    transition: 1s ease-in-out;
+}
+
+.recipt p{
+    color: var(--primary-color);
+    transition: 1s ease-in-out;
+    font-weight: bold;
+
 }
 
 .recipt .item-name{
@@ -879,7 +1001,7 @@ background-color: white;
     width: 90%;
     height: auto;
     min-height: 20%;
-    background-color: #252945;
+    background-color: var(--on-background-3);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     margin: 0 auto;
@@ -887,6 +1009,7 @@ background-color: white;
     justify-content: space-between;
     align-items: center;
     color: white;
+    transition: 1s ease-in-out;
 }
 
 .item-quantity,.item-price,.item-total{
@@ -895,12 +1018,18 @@ background-color: white;
 
 .bill-total{
     margin-right: 10px;
+    color: white !important;
 }
 
 .form input,p{
     font-size: 1.1vw;
 }
 
+.firstLetter:before {
+    color: blue;
+    content: "#";
+    font-weight: bold;
+}
 @media only screen and (min-width: 2000px) {
     .createInvoice label, p{
         font-size: 1vw;
@@ -964,6 +1093,9 @@ background-color: white;
 .form {
     width: 95%;
     
+}
+.statusInvoice {
+    font-size: 1.2vw;
 }
 
 }
@@ -1059,7 +1191,6 @@ background-color: white;
     .invoice-Container{
         width: 90%;
         height: 99%;
-        background-color: white;
     }
     .createInvoice{
         width: 50%;
@@ -1149,6 +1280,10 @@ background-color: white;
     font-size: 2.2vw;
 }
 
+.statusInvoice {
+    font-size: 1.5vw;
+}
+
     
 }
 
@@ -1160,7 +1295,6 @@ background-color: white;
     .invoice-Container{
         width: 99%;
         height: 99%;
-        background-color: white;
     }
 
     .invoice-Container p, label {
@@ -1258,7 +1392,6 @@ background-color: white;
     .invoice {
         width: 90%;
         height: auto;
-        background-color: white;
         margin: 10px auto;
         display: flex;
         justify-content: baseline;
@@ -1334,7 +1467,6 @@ background-color: white;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        background-color: whitesmoke;
     }
 
     .nav .form-container {
@@ -1389,6 +1521,13 @@ background-color: white;
    .clientAddress-container .p{
     font-size: 50px;
    }
+
+   .invoice-status .dot {
+    width: 1.5vw;
+    height: 1.5vw;
+    border-radius: 50%;
+    margin: 0px 5px;
+}
   
 }
 
@@ -1416,4 +1555,51 @@ background-color: white;
 }
 
 
+}
+
+@media only screen and (max-width: 351px) {
+.invoice {
+    width: 90%;
+    height: auto;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.invoice .invoice-id, .invoice-due, .customer-name {
+    width: 90%;
+    padding: 10px 0px;
+    text-align: center;
+}
+
+.invoice .invoice-amount {
+    width: 90%;
+    padding: 10px 0px;
+    text-align: center;
+}
+
+.status-container {
+    width: 90%;
+    height: 70px;
+    margin: 5px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.newInvoice img {
+    width: 18px;
+    border-radius: 50%;
+    padding: 5px;
+    margin: 0px 8px;
+}
+
+.createInvoice button {
+    width: 40%;
+    height: 35%;
+    font-size: 7px;
+}
 }

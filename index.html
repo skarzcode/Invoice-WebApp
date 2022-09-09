@@ -19,7 +19,10 @@
            <!-- container for avatar on light and dark mode switch -->
            <div class="avatar-togglebtn-Container">
             <div class="light-dark-container">
-                <img class="light-and-dark-toggle" src="starter-code\assets\icon-moon.svg" alt="light and dark mode toggle">
+                <label class="switch">
+                    <input class="LightAndDarkSwitch" type="checkbox">
+                    <img class="light-and-dark-toggle" src="starter-code\assets\icon-moon.svg" alt="light and dark mode toggle">
+                 </label>
             </div>
             <div class="avatar-container">
                 <img class="avatar" src="starter-code\assets\image-avatar.jpg" alt="avatar">
@@ -32,52 +35,52 @@
             <div class="form">
             <h1>New Invoice</h1>
             <div class="bill-from">
-                <p>Bill From</p>
+                <p class="bill-header">Bill From</p>
             <label for="form-address">Street Address</label><br>
-            <input class="form-address" type="text" id="form-address" name="form-address"><br><br>
+            <input class="form-address formValidation" type="text" id="form-address" name="form-address"><br><br>
             <div class="location-container">
                 <div class="flexContainer">
                 <label for="form-city">City</label><br>
-                <input class="form-city formInput" type="text" id="form-city" name="form-city"><br>
+                <input class="form-city formInput formValidation" type="text" id="form-city" name="form-city"><br>
             </div>
                 <!--  -->
                 <div class="flexContainer">
                 <label for="form-postCode">Post Code</label><br>
-                <input class="form-postCode formInput" type="text" id="form-postCode" name="form-postCode"><br>
+                <input class="form-postCode formInput formValidation" type="text" id="form-postCode" name="form-postCode"><br>
             </div>
             <!--  -->
             <div class="flexContainer">
                 <label for="form-country">Country</label><br>
-                <input class="form-country formInput" type="text" id="form-country" name="form-country"><br>
+                <input class="form-country formInput formValidation" type="text" id="form-country" name="form-country"><br>
             </div>
             </div>
             </div>
             <!--  -->
             <div class="bill-to">
-                <p>Bill To</p>
+                <p class="bill-header">Bill To</p>
             <label for="client-name">Client's Name</label><br>
-            <input class="client-name" type="text" id="client-name" name="client-name"><br><br>
+            <input class="client-name formValidation" type="text" id="client-name" name="client-name"><br><br>
             <!--  -->
             <label for="client-email">Client's Email</label><br>
-            <input class="client-email" type="text" id="client-email" name="client-email"><br><br>
+            <input class="client-email formValidation" type="text" id="client-email" name="client-email"><br><br>
             <!--  -->
             <label for="form-address2">Street Address</label><br>
-            <input class="form-address2" type="text" id="form-address2" name="form-address2"><br><br>
+            <input class="form-address2 formValidation" type="text" id="form-address2" name="form-address2"><br><br>
             <!--  -->
             <div class="location-container">
                 <div class="flexContainer">
                 <label for="form-city2">City</label><br>
-                <input class="form-city2 formInput" type="text" id="form-city2" name="form-city2"><br>
+                <input class="form-city2 formInput formValidation" type="text" id="form-city2" name="form-city2"><br>
             </div>
                 <!--  -->
                 <div class="flexContainer">
                 <label for="form-postCode2">Post Code</label><br>
-                <input class="form-postCode2 formInput" type="text" id="form-postCode2" name="form-postCode2"><br>
+                <input class="form-postCode2 formInput formValidation" type="text" id="form-postCode2" name="form-postCode2"><br>
             </div>
             <!--  -->
             <div class="flexContainer">
                 <label for="form-country2">Country</label><br>
-                <input class="form-country2 formInput" type="text" id="form-country2" name="form-country2"><br>
+                <input class="form-country2 formInput formValidation" type="text" id="form-country2" name="form-country2"><br>
             </div>
             </div>
 
@@ -87,17 +90,16 @@
                 <div class="date-container">
                     <div class="flexContainer2">
                         <label for="invoice-date-made">Invoice Date</label><br>
-                        <input class="invoice-date-made" type="date" id="invoice-date-made" name="invoice-date-made"><br>
+                        <input class="invoice-date-made formValidation" type="date" id="invoice-date-made" name="invoice-date-made"><br>
                     </div>  
-                    <!--  -->
                     <div class="flexContainer2">
                         <label for="invoice-date-due">Payment Due</label><br>
-                        <input class="invoice-date-due" type="date" id="invoice-date-due" name="invoice-date-due"><br>
+                        <input class="invoice-date-due formValidation" type="date" id="invoice-date-due" name="invoice-date-due"><br>
                     </div>  
                 </div>
                 <!--  -->
                 <label for="form-project-description">Project Description</label><br>
-                <input class="form-project-description" type="text" id="form-project-description" name="form-project-description"><br>
+                <input class="form-project-description formValidation" type="text" id="form-project-description" name="form-project-description"><br>
 
             </div>
 
@@ -222,7 +224,7 @@
                         <p>Status</p>
                         <div class="status-container2">
                             <div class="dot2"></div>
-                            <p class="statusInvoice">Pending</p>
+                            <p class="statusInvoice"></p>
                         </div>
                     </div>
                     <!--  -->
@@ -250,26 +252,26 @@
                     <div class="customer-info">
                         <div class="invoice-dates">
                             <p>Invoice Date</p>
-                            <h1 class="invoiceDate">21 August</h1>
+                            <h1 class="invoiceDate"></h1>
                             <p>Payment Due</p>
-                            <h1 class="invoiceDue">20 Sep 2021</h1>
+                            <h1 class="invoiceDue"></h1>
                         </div>
 
                         <div class="senderAddress-container">
-                            <p> Bill To</p>
-                            <h1 class="customerName">Alex Grim</h1>
+                            <p>Send To</p>
+                            <h1 class="customerName"></h1>
                             <div class="senderAddress">
-                                <p class="sender-street">84 Church Way</p>
-                                <p class="sender-city">Bradford</p>
-                                <p class="sender-postCode">BD1 9PB</p>
-                                <P class="sender-country">United Kingdom</P>
+                                <p class="sender-street"></p>
+                                <p class="sender-city"></p>
+                                <p class="sender-postCode"></p>
+                                <P class="sender-country"></P>
                             </div>
                         </div>
 
                         <div class="email-container">
                            <div class="send-to">
                             <p>Send To</p>
-                            <h1 class="customer-email">alexgrim@gmail.com</h1>
+                            <h1 class="customer-email"></h1>
                            </div>
                         </div>
                     </div>
@@ -291,7 +293,7 @@
                     </div>
                     <div class="bill">
                         <p>Amount Due</p>
-                        <h1 class="bill-total">£0</h1>
+                        <h1 class="bill-total">£</h1>
                     </div>
 
                     
