@@ -100,11 +100,11 @@ body::-webkit-scrollbar {
 
 .form{
     width: 90%;
-    height: auto;
+    height: 100%;
     background-color: var(--on-background);
     font-size: 1vw;
     transition: transform 500ms ease-in-out,background 1s ease-in-out;
-    
+    overflow: scroll;
 }
 
 
@@ -1486,7 +1486,6 @@ transition: 1s ease-in-out;
 
     .form {
         width: 95%;
-        height: 100%;
     }
 
     .invoice .invoice-id,.invoice-due,.customer-name{
