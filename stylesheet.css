@@ -1299,6 +1299,12 @@ transition: 1s ease-in-out;
     font-size: 1.5vw;
 }
 
+.form input {
+    padding: 1vw 0;
+    font-size: 16px;
+    
+}
+
     
 }
 
@@ -1400,6 +1406,8 @@ transition: 1s ease-in-out;
     .invoice-header p{
         font-size: 2.5vw;
     }
+
+   
 
   
 }
@@ -1542,6 +1550,12 @@ transition: 1s ease-in-out;
     height: 1.5vw;
     border-radius: 50%;
     margin: 0px 5px;
+}
+
+.form input {
+    padding: 2vw 0;
+    font-size: 16px;
+    
 }
   
 }
