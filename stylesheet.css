@@ -574,6 +574,10 @@ align-items: flex-start;
 
 }
 
+.invoice-Counter p{
+    font-size: 1.3vw;
+}
+
 .invoice-Counter h1{
     font-size: 4vw;
     margin: 5px 0px;
@@ -671,11 +675,12 @@ align-items: flex-start;
     color: var(--primary-color);
     transition: 1s ease-in-out;
     margin-left: 10px;
+    font-size: 1.6vw;
 }
 
 .invoice .invoice-amount{
     font-weight: bold;
-  font-size: 1.7vw;
+  font-size: 1.6vw;
   width: 25%;
   color: var(--primary-color);
   transition: 1s ease-in-out;
@@ -696,12 +701,14 @@ align-items: flex-start;
     width: 25%;
     color: var(--primary-variant);
     transition: 1s ease-in-out;
+    font-size: 1.3vw;
 }
 
 .customer-name{
     width: 25%;
     color: var(--primary-variant);
     transition: 1s ease-in-out;
+    font-size: 1.3vw;
 }
 
 .edit{
@@ -1114,6 +1121,31 @@ transition: 1s ease-in-out;
     font-size: 1.2vw;
 }
 
+.invoice .invoice-amount{
+  font-size: 2vw;
+}
+
+.invoice .invoice-id{
+    font-size: 2vw;
+}
+
+.invoice-due{
+    font-size: 1.6vw;
+}
+
+.customer-name{
+    font-size: 1.6vw;
+}
+
+.invoice-Counter p{
+    font-size: 1.6vw;
+}
+
+.invoice-Counter h1{
+    font-size: 4vw;
+  
+}
+
 }
 
 
@@ -1222,13 +1254,34 @@ transition: 1s ease-in-out;
         font-size: 1.5vw;
     }
 
-    .invoice .invoice-amount {
-        font-weight: bold;
-        font-size: 3vw;
-    }
+
+    .invoice .invoice-amount{
+        font-size: 2.8vw;
+      }
+      
+      .invoice .invoice-id{
+          font-size: 2.8vw;
+      }
+      
+      .invoice-due{
+          font-size: 2.3vw;
+      }
+      
+      .customer-name{
+          font-size: 2.3vw;
+      }
 
     .description-status{
+        font-size: 2.1vw;
+    }
+
+    .invoice-Counter p{
         font-size: 2vw;
+    }
+
+    .invoice-Counter h1{
+        font-size: 4.5vw;
+      
     }
 
     .Invoice-description{
@@ -1296,11 +1349,11 @@ transition: 1s ease-in-out;
 }
 
 .statusInvoice {
-    font-size: 1.5vw;
+    font-size: 2vw;
 }
 
 .form input {
-    padding: 1vw 0;
+    padding: 1.4vw 0;
     font-size: 16px;
     
 }
@@ -1318,7 +1371,7 @@ transition: 1s ease-in-out;
         height: 99%;
     }
 
-    .invoice-Container p, label {
+    .invoice-Container label {
         font-size: 12px;
     }
 
@@ -1405,6 +1458,39 @@ transition: 1s ease-in-out;
 
     .invoice-header p{
         font-size: 2.5vw;
+    }
+
+    .invoice .invoice-amount{
+        font-size: 3vw;
+      }
+      
+      .invoice .invoice-id{
+          font-size: 3vw;
+      }
+      
+      .invoice-due{
+          font-size: 2.6vw;
+      }
+      
+      .customer-name{
+          font-size: 2.6vw;
+      }
+
+      .statusInvoice {
+        font-size: 2.3vw;
+    }
+
+    .invoice-Counter p{
+        font-size: 2vw;
+    }
+
+    .invoice-Counter h1{
+        font-size: 5.1vw;
+      
+    }
+
+    .form p, label, h1 {
+        font-size: 3vw;
     }
 
    
@@ -1557,6 +1643,35 @@ transition: 1s ease-in-out;
     font-size: 16px;
     
 }
+
+.invoice .invoice-amount{
+    font-size: 3.7vw;
+  }
+  
+  .invoice .invoice-id{
+      font-size: 3.7vw;
+  }
+  
+  .invoice-due{
+      font-size: 3.4vw;
+  }
+  
+  .customer-name{
+      font-size: 3.4vw;
+  }
+
+  .statusInvoice {
+    font-size: 3vw;
+}
+
+.invoice-Counter p{
+    font-size: 3vw;
+}
+
+.invoice-Counter h1{
+    font-size: 6vw;
+  
+}
   
 }
 
@@ -1630,5 +1745,34 @@ transition: 1s ease-in-out;
     width: 40%;
     height: 35%;
     font-size: 7px;
+}
+
+.invoice .invoice-amount{
+    font-size: 4.5vw;
+  }
+  
+  .invoice .invoice-id{
+      font-size: 4.5vw;
+  }
+  
+  .invoice-due{
+      font-size: 4vw;
+  }
+  
+  .customer-name{
+      font-size: 4vw;
+  }
+
+  .statusInvoice {
+    font-size: 4vw;
+}
+
+.invoice-Counter p{
+    font-size: 3vw;
+}
+
+.invoice-Counter h1{
+    font-size: 6vw;
+  
 }
 }
