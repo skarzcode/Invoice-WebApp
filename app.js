@@ -23,6 +23,47 @@ const option = document.querySelector(".option");
 const url = "starter-code/data.json";
 let res;
 let globalId;
+const testArr = [];
+let currobj;
+
+// factory func to create invoice objects
+const InvoiceObj = (id, createdAt, paymentDue, description, clientName, clientEmail, fromAddress, fromCity, fromPostCode, fromCountry, toAddress, toCity, toPostCode, toCountry, total) => {
+
+
+    const items = [];
+
+    for (let i = 0; i < itemName.length; i++) {
+        let currentList = listItems(itemName[i].value, itemQty[i].value, itemPrice[i].value, (itemQty[i].value * itemPrice[i].value));
+        items.push(currentList);
+    };
+
+    let status = "pending";
+
+    return {
+        id,
+        createdAt,
+        paymentDue,
+        description,
+        clientName,
+        clientEmail,
+        status,
+        senderAddress: {
+            street: fromAddress,
+            city: fromCity,
+            postCode: fromPostCode,
+            country: fromCountry,
+        },
+        clientAddress: {
+            street: toAddress,
+            city: toCity,
+            postCode: toPostCode,
+            country: toCountry,
+        },
+        items,
+        total,
+    };
+};
+// Creates an object to be stored in the items key which is an array inside the invoice object.
 let listItems = (name, quantity, price, total) => {
     return {
         name,
@@ -32,31 +73,7 @@ let listItems = (name, quantity, price, total) => {
     };
 };
 
-
-
-// test doms
-const testArr = [];
-let currobj;
-
-function reqData() {
-    fetch(url)
-        .then(res => res.json())
-        .then(data => {
-            res = data;
-            localStorage.setItem("data", JSON.stringify(res))
-
-            // calling renderJobs function to render each job using
-            data.forEach(current => {
-                renderInvoice(current);
-            });
-
-        })
-        .catch((error) => {
-            console.error(error);
-        })
-};
-
-let data = JSON.parse(localStorage.getItem("data"));
+// objects containing Dom Elements that can be catogrised together and functions that pertain the set obj;
 
 const invoiceDomElements = {
     invoiceCounter: document.querySelector(".counter"),
@@ -65,64 +82,9 @@ const invoiceDomElements = {
     containerForInvoices: document.querySelector(".invoices"),
     invoiceCard: invoiceCard
 }
-
 invoiceDomElements.invoiceCounter.innerHTML = counter;
 
-function switchTheme(event) {
-    if (event.target.checked) {
-        lightAndDarkImg.src = "starter-code/assets/icon-sun.svg";
-        document.documentElement.setAttribute('data-theme', 'dark');
-        document.documentElement.style.transition = "all 2s"
-        localStorage.setItem('theme', 'dark');
-        console.log("checked")
-    } else {
-        lightAndDarkImg.src = "starter-code/assets/icon-moon.svg"
-        document.documentElement.setAttribute('data-theme', 'light');
-        document.documentElement.style.transition = "all 2s"
-        localStorage.setItem('theme', 'light');
-        console.log("not checked")
-    }
-
-
-}
-
-const currentTheme = localStorage.getItem('theme');
-
-if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    if (currentTheme === 'dark') {
-        lightAndDarkToggle.checked = true;
-        lightAndDarkImg.src = "starter-code/assets/icon-sun.svg";
-    } else if (currentTheme === 'light') {
-        lightAndDarkToggle.checked = false;
-        lightAndDarkImg.src = "starter-code/assets/icon-moon.svg"
-    } else if (!currentTheme) {
-        lightMode()
-    };
-}
-
-
-
-
-function idGenerator() {
-    let letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-    let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    let id = "";
-    for (let i = 0; i < 2; i++) {
-        let index = [Math.floor((Math.random() * letters.length))];
-        id += letters[index];
-    }
-    for (let i = 0; i < 4; i++) {
-        let index = [Math.floor((Math.random() * numbers.length))];
-        id += numbers[index];
-    }
-    return id;
-}
-
-
-
-
-
+// all inputs for the form are stored below
 const formDomElements = {
     fromAddress: document.querySelector(".form-address"),
     fromCity: document.querySelector(".form-city"),
@@ -154,11 +116,119 @@ const formDomElements = {
     formHeader: document.querySelector(".form-h1-1")
 }
 
+// sets current date as the minmum date to be chosen for the date picker which is declared in the formDomElements above;
 const today = new Date().toISOString().split('T')[0];
 console.log(today)
 formDomElements.dateMade.setAttribute('min', today);
 formDomElements.dateDue.setAttribute('min', today);
-// function for adding  new item inputs to the form
+// The Dom elements for the view invoice section when a user clicks on an invoice
+const invoiceDescriptionDomElements = {
+    statusContainer2: document.querySelector(".status-container2"),
+    dot2: document.querySelector(".dot2"),
+    statusInvoice: document.querySelector(".statusInvoice"),
+    editBtn: document.querySelectorAll(".button-edit"),
+    deletBtn: document.querySelectorAll(".button-delete"),
+    paidBtn: document.querySelectorAll(".button-paid"),
+    projID: document.querySelector(".proj-id"),
+    projName: document.querySelector(".proj-name"),
+    clientAddress: {
+        clientStreet: document.querySelector(".client-street"),
+        clientCity: document.querySelector(".client-city"),
+        clientPostCode: document.querySelector(".client-postcode"),
+        clientCountry: document.querySelector(".client-country"),
+    },
+    invoiceDateMade: document.querySelector(".invoiceDate"),
+    invoiceDue: document.querySelector(".invoiceDue"),
+    customerName: document.querySelector(".customerName"),
+    senderAddress: {
+        senderStreet: document.querySelector(".sender-street"),
+        senderCity: document.querySelector(".sender-city"),
+        senderPostCode: document.querySelector(".sender-postCode"),
+        senderCountry: document.querySelector(".sender-country")
+    },
+    customerEmail: document.querySelector(".customer-email"),
+    reciptContainer: document.querySelector(".project-recipt"),
+    billTotal: document.querySelector(".bill-total"),
+    backBtn: document.querySelector(".back-btn")
+
+
+}
+
+// end of obj
+
+// Functions
+// Function to fetch the data json file, replicate and store in the local storage;
+function reqData() {
+    fetch(url)
+        .then(res => res.json())
+        .then(data => {
+            res = data;
+            localStorage.setItem("data", JSON.stringify(res))
+
+            // calling renderJobs function to render each job using
+            data.forEach(current => {
+                renderInvoice(current);
+            });
+
+        })
+        .catch((error) => {
+            console.error(error);
+        })
+};
+
+// retrives the copied data to then use
+let data = JSON.parse(localStorage.getItem("data"));
+// Function to set color theme
+function switchTheme(event) {
+    if (event.target.checked) {
+        lightAndDarkImg.src = "starter-code/assets/icon-sun.svg";
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.documentElement.style.transition = "all 2s"
+        localStorage.setItem('theme', 'dark');
+        console.log("checked")
+    } else {
+        lightAndDarkImg.src = "starter-code/assets/icon-moon.svg"
+        document.documentElement.setAttribute('data-theme', 'light');
+        document.documentElement.style.transition = "all 2s"
+        localStorage.setItem('theme', 'light');
+        console.log("not checked")
+    }
+
+
+}
+
+// Checks to see if a theme has been previously set by the user and applies it to the document
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (currentTheme === 'dark') {
+        lightAndDarkToggle.checked = true;
+        lightAndDarkImg.src = "starter-code/assets/icon-sun.svg";
+    } else if (currentTheme === 'light') {
+        lightAndDarkToggle.checked = false;
+        lightAndDarkImg.src = "starter-code/assets/icon-moon.svg"
+    } else if (!currentTheme) {
+        lightMode()
+    };
+}
+
+// function to create a new unique id everytime an invoice is created
+function idGenerator() {
+    let letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let id = "";
+    for (let i = 0; i < 2; i++) {
+        let index = [Math.floor((Math.random() * letters.length))];
+        id += letters[index];
+    }
+    for (let i = 0; i < 4; i++) {
+        let index = [Math.floor((Math.random() * numbers.length))];
+        id += numbers[index];
+    }
+    return id;
+}
+
+// function for adding  new item input field to the form
 function newIteminput() {
     let newItemContainer = document.createElement("div");
     newItemContainer.classList.add("itemCard");
@@ -253,50 +323,7 @@ function newIteminput() {
     })
 }
 
-// adds  new item inputs to the form
-formDomElements.newItemBtn.addEventListener("click", function () {
-    newIteminput()
-});
-
-// factory func to create invoice objects
-const InvoiceObj = (id, createdAt, paymentDue, description, clientName, clientEmail, fromAddress, fromCity, fromPostCode, fromCountry, toAddress, toCity, toPostCode, toCountry, total) => {
-
-
-    const items = [];
-
-    for (let i = 0; i < itemName.length; i++) {
-        let currentList = listItems(itemName[i].value, itemQty[i].value, itemPrice[i].value, (itemQty[i].value * itemPrice[i].value));
-        items.push(currentList);
-    };
-
-    let status = "pending";
-
-    return {
-        id,
-        createdAt,
-        paymentDue,
-        description,
-        clientName,
-        clientEmail,
-        status,
-        senderAddress: {
-            street: fromAddress,
-            city: fromCity,
-            postCode: fromPostCode,
-            country: fromCountry,
-        },
-        clientAddress: {
-            street: toAddress,
-            city: toCity,
-            postCode: toPostCode,
-            country: toCountry,
-        },
-        items,
-        total,
-    };
-};
-
-// function to create the invoices and append them to the page
+// function to create the invoices and append them to the page after the object is created
 function renderInvoice(curr) {
     let invoiceCard = document.createElement("div");
     invoiceCard.classList.add("invoice");
@@ -432,8 +459,7 @@ function renderInvoice(curr) {
 
 }
 
-// function to update description page
-
+// function to update description page Dom Elements
 function updateInvoiceDescription(curr) {
     invoiceDescriptionDomElements.statusInvoice.innerHTML = curr.status;
     if (invoiceDescriptionDomElements.statusInvoice.innerHTML == "paid") {
@@ -514,8 +540,8 @@ function updateInvoiceDescription(curr) {
 
 
 }
-// function to clear the form
 
+// function to clear and reset the form
 function clearForm() {
     formDomElements.fromAddress.value = "";
     formDomElements.fromCity.value = "";
@@ -549,7 +575,7 @@ function clearForm() {
     }
 }
 
-// function to update invoices 
+// function to update invoices which is called when user presses saveChange Btn
 function updateInvoice(curr) {
 
     curr.senderAddress.street = formDomElements.fromAddress.value;
@@ -589,7 +615,7 @@ function updateInvoice(curr) {
     localStorage.setItem("data", JSON.stringify(data));
 }
 
-// function to pre populate the form once user presses edit.
+// function to pre populate the form with the chosen object once user presses edit.
 function populateForm(curr) {
     formDomElements.fromAddress.value = curr.senderAddress.street;
     formDomElements.fromCity.value = curr.senderAddress.city;
@@ -667,6 +693,27 @@ function formValidation() {
 }
 
 
+// Event listners that are not scoped to a function 
+
+// chnages the state of the app changing between invoice page and invoice description page
+invoiceCard.forEach((card) => {
+    card.addEventListener("click", function () {
+        invoiceContainer.classList.add("slideout");
+        descriptionContainer.classList.add("slidein");
+    })
+})
+
+// refreshes the page when logo is clicked
+logo.addEventListener("click", function () {
+    location.reload();
+})
+// changes the theme of the webapp
+lightAndDarkToggle.addEventListener('change', switchTheme);
+// adds new item input feilds into the form 
+formDomElements.newItemBtn.addEventListener("click", function () {
+    newIteminput()
+});
+// renders the invoice if form validation is passed
 formDomElements.saveBtn.addEventListener("click", function () {
     let email = document.querySelector(".client-email");
 
@@ -722,7 +769,7 @@ formDomElements.saveBtn.addEventListener("click", function () {
     }
     formScroll.scrollTo(0, 0);
 })
-
+// makes a draft which i rendered 
 formDomElements.draftBtn.addEventListener("click", function () {
     let totalCount = 0;
     for (let i = 0; i < itemTotal.length; i++) {
@@ -755,46 +802,13 @@ formDomElements.draftBtn.addEventListener("click", function () {
     }
     formScroll.scrollTo(0, 0);
 })
-
+// removes and clears the form 
 formDomElements.discardBtn.addEventListener("click", function () {
     clearForm();
     formContainer.classList.remove("displayForm");
     formScroll.scrollTo(0, 0);
 })
-
-
-const invoiceDescriptionDomElements = {
-    statusContainer2: document.querySelector(".status-container2"),
-    dot2: document.querySelector(".dot2"),
-    statusInvoice: document.querySelector(".statusInvoice"),
-    editBtn: document.querySelectorAll(".button-edit"),
-    deletBtn: document.querySelectorAll(".button-delete"),
-    paidBtn: document.querySelectorAll(".button-paid"),
-    projID: document.querySelector(".proj-id"),
-    projName: document.querySelector(".proj-name"),
-    clientAddress: {
-        clientStreet: document.querySelector(".client-street"),
-        clientCity: document.querySelector(".client-city"),
-        clientPostCode: document.querySelector(".client-postcode"),
-        clientCountry: document.querySelector(".client-country"),
-    },
-    invoiceDateMade: document.querySelector(".invoiceDate"),
-    invoiceDue: document.querySelector(".invoiceDue"),
-    customerName: document.querySelector(".customerName"),
-    senderAddress: {
-        senderStreet: document.querySelector(".sender-street"),
-        senderCity: document.querySelector(".sender-city"),
-        senderPostCode: document.querySelector(".sender-postCode"),
-        senderCountry: document.querySelector(".sender-country")
-    },
-    customerEmail: document.querySelector(".customer-email"),
-    reciptContainer: document.querySelector(".project-recipt"),
-    billTotal: document.querySelector(".bill-total"),
-    backBtn: document.querySelector(".back-btn")
-
-
-}
-
+// Chanages the status of an invoice from "pending" to "paid"
 invoiceDescriptionDomElements.paidBtn.forEach(currbtn => {
     currbtn.addEventListener("click", function () {
         let data = JSON.parse(localStorage.getItem("data"));
@@ -821,7 +835,7 @@ invoiceDescriptionDomElements.paidBtn.forEach(currbtn => {
 
     })
 })
-
+// pops up delete confirmation pages
 invoiceDescriptionDomElements.deletBtn.forEach(currBtn => {
     currBtn.addEventListener("click", function () {
         overLay.classList.add("DisplayFlex");
@@ -829,7 +843,7 @@ invoiceDescriptionDomElements.deletBtn.forEach(currBtn => {
         console.log(globalId);
     })
 })
-
+// deletes an invoice from the dom and from the array
 overlayDeleteBtn.addEventListener("click", function () {
     let data = JSON.parse(localStorage.getItem("data"));
     console.log("working");
@@ -880,12 +894,13 @@ overlayDeleteBtn.addEventListener("click", function () {
 
     invoiceDescriptionDomElements.billTotal.innerHTML = "£";
 })
+//removes the delete confirmation page
 overlayCancelBtn.addEventListener("click", function () {
     overLay.classList.remove("DisplayFlex");
     console.log(globalId);
 })
 
-
+// chnages the state of the app back from the description pajge to the invoice page
 invoiceDescriptionDomElements.backBtn.addEventListener("click", function () {
     invoiceContainer.classList.remove("slideout");
     descriptionContainer.classList.remove("slidein");
@@ -916,7 +931,7 @@ invoiceDescriptionDomElements.backBtn.addEventListener("click", function () {
 
     invoiceDescriptionDomElements.billTotal.innerHTML = "£";
 })
-
+// pops open the form to create a new invoice
 invoiceDomElements.newInvoiceBtn.addEventListener("click", function () {
     formContainer.classList.add("displayForm");
     formDomElements.discardBtn.classList.remove("buttonDisplayNone");
@@ -1043,21 +1058,7 @@ invoiceDescriptionDomElements.editBtn.forEach(btn => {
     })
 });
 
-
-
-
-invoiceCard.forEach((card) => {
-    card.addEventListener("click", function () {
-        console.log("working");
-        invoiceContainer.classList.add("slideout");
-        descriptionContainer.classList.add("slidein");
-    })
-})
-
-// reqData();
-
-
-
+// calls to see if copy of data exists in local storage otherwise it runs the fetch function to get data from json file
 if (data) {
     data.forEach(current => {
         renderInvoice(current);
@@ -1072,19 +1073,5 @@ if (data) {
     invoiceDomElements.invoiceCounter.innerHTML = counter;
 }
 
-logo.addEventListener("click", function () {
-    location.reload();
-})
-
-lightAndDarkToggle.addEventListener('change', switchTheme);
 
 
-// setTimeout(() => {
-//     let data = JSON.parse(localStorage.getItem("data"));
-//     data.forEach(current => {
-//         renderInvoice(current);
-//     });
-//    },50);
-
-
-// factor
