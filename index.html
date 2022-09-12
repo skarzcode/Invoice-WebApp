@@ -9,8 +9,8 @@
 <body>
     <div class="overlay">
         <div class="confirmationDiv">
-            <h1>Confirm Deletion</h1>
-            <p>Are you sure you want to delete invoice #<span class="deletionId">XZ1234</span>? This action cannot be undone.</p>
+            <h1 class="confirmH1">Confirm Deletion</h1>
+            <p class="confirmP">Are you sure you want to delete invoice #<span class="deletionId">XZ1234</span>? This action cannot be undone.</p>
             <div class="buttons">
                 <button class="cancelConfirmation">Cancel</button>
                 <button class="deleteConfirmation">Delete</button>
@@ -167,7 +167,7 @@
 
                     <div class="createInvoice">
                         <label for="status">Filter By Status</label>
-                        <select name="status" id="status" style="background:transparent; border:0px; padding:0px;">
+                        <select class="select" name="status" id="status" style="background:transparent; border:0px; padding:0px;">
                             <option></option>
                             <option value="All">All</option>
                             <option value="Paid">Paid</option>
@@ -230,7 +230,10 @@
 
 
             <div class="Invoice-description">
-                <img class="back-btn" src="starter-code\assets\icon-arrow-left.svg" alt="back">
+                <div class="backDiv">
+                    <img class="back-btn" src="starter-code\assets\icon-arrow-left.svg" alt="back">
+                <p class="backP ">Back</p>
+                </div>
                 <div class="invoice-header">
                     <div class="description-status">
                         <p>Status</p>
