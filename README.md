@@ -10,16 +10,13 @@ Invoice web app solution
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
 ### The challenge
 
 Users should be able to:
-lool
 
 - View the optimal layout for the app depending on their device's screen size
 - See hover states for all interactive elements on the page
@@ -37,81 +34,82 @@ lool
 ![](starter-code/assets/Screenshot%20(47).png)
 ![](starter-code/assets/Screenshot%20(48).png)
 
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
-
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [https://amajid.dev/invoiceapp](https://your-solution-url.com)
+- Live Site URL: [https://skarzcode.github.io/Invoice-WebApp/](https://your-live-site-url.com)
 
 ## My process
 
+Sketch
+At the beginning of the project, first I outlined all the components of the app with a pen and pad to get an understanding of how i would structure and make each section giving me clarity on what tools will be needed to execute the project
+
+Static Version
+Once the design was done, i then began creating a static version of the app using HTML5 and CSS alongside dummy data to know how each section should look and function. This gave me the ability to write better psuedo code as i knew what elements would be dynamic and interactive.
+
+Dynamic Version
+Finally after creating my Psuedo code and design ideas i began implementing Javascript to use Fetch to render the JSON data as well as creating Factory functions to create dynamic objects utilising Dom Elements that would change state after events
 ### Built with
 
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
 - Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
+As this was an invoice project that rendered data from the local Json File on the first load using fetch, i was worried about how i would store changes and edits to that data. For example with the initail load their would be a total of 7 Invoices. However, what if the user deletes 5 of those invoices leaving only 2. If the user was to refresh the App, should all the content be loaded again? Making the total invoices 7 or reload the page with only 2 invoices as the user deleted the other 5 in his previous session.
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+I was able to overcome this issue by using fetch on the users first load to retrive the data then once i had done that i copied it into a  variable called res and stored it in local storage. Any time i created updated or deleted an invoice i retrive the array from local storage and updated that data.
 
-To see how you can add code snippets, see below:
+I also made sure to check if that array existed in local storage before a user loads the page if it did exist i would run the render function on that data/Array and if it did not exist meaning it probably was the users first time on the app i would use fetch to retrive the local Jsos file so i can render the invoices.
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+
+Another thing which i had learned was whenever i edited an invoice on the read page instead of manually updating it on the HomePage where you can see all the invoices i deleted all the content inside the outer invoice container and then ran the render function again on the newly updated array.
+
+Func to check if data exist in local storage and also func to re render the invoices.
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+
+const proudOfThisFunc= () => {
+if (data) {
+    data.forEach(current => {
+        renderInvoice(current);
+        counter++;
+        invoiceDomElements.invoiceCounter.innerHTML = counter;
+    });
+} else {
+    reqData();
+    counter = 7;
+    invoiceDomElements.invoiceCounter.innerHTML = counter;
 }
+}
+
+
+const proudOfThisFunc2 = () => {
+      invoiceContainer.classList.remove("slideout");
+    descriptionContainer.classList.remove("slidein");
+    invoiceOuterContainer.innerHTML = "";
+    let data = JSON.parse(localStorage.getItem("data"));
+    if (data) {
+        data.forEach(current => {
+            renderInvoice(current);
+            localStorage.setItem("data", JSON.stringify(data))
+        });
+    } else {
+        data.forEach(current => {
+            renderInvoice(current);
+            localStorage.setItem("data", JSON.stringify(data))
+        });
+        localStorage.setItem("data", JSON.stringify(data))
+    };
+}
+
 ```
-
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
-
-**Note: Delete this note and the content within this section and replace with your own learnings.**
 
 ### Continued development
+Things which i will be focusing on in future projects will be using classes as i used factory functions in this project and would like a better overall understanding on OOP. Furthermore, getting a better and deeper understanding on CallBack Functions despite not using them in this project as i know it to be and integral part withing JS Programming
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
-
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [Abdi Majid](https://www.amajid.dev)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
