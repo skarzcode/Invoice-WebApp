@@ -36,7 +36,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://amajid.dev/invoiceapp](https://amajid.dev/invoiceapp])
+- Solution URL: [https://amajid.dev/invoiceapp](https://amajid.dev/invoiceapp)
 - Live Site URL: [https://skarzcode.github.io/Invoice-WebApp/](https://skarzcode.github.io/Invoice-WebApp/)
 
 ## My process
