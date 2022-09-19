@@ -36,19 +36,22 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [https://amajid.dev/invoiceapp](https://your-solution-url.com)
-- Live Site URL: [https://skarzcode.github.io/Invoice-WebApp/](https://your-live-site-url.com)
+- Solution URL: [https://amajid.dev/invoiceapp](https://amajid.dev/invoiceapp])
+- Live Site URL: [https://skarzcode.github.io/Invoice-WebApp/](https://skarzcode.github.io/Invoice-WebApp/)
 
 ## My process
 
 Sketch
-At the beginning of the project, first I outlined all the components of the app with a pen and pad to get an understanding of how i would structure and make each section giving me clarity on what tools will be needed to execute the project
+
+At the beginning of the project, first I outlined all the components of the app with a pen and pad to get an understanding of how I would structure and make each section giving me clarity on what tools will be needed to execute the project
 
 Static Version
-Once the design was done, i then began creating a static version of the app using HTML5 and CSS alongside dummy data to know how each section should look and function. This gave me the ability to write better psuedo code as i knew what elements would be dynamic and interactive.
+
+Once the design was done, I then began creating a static version of the app using HTML5 and CSS alongside dummy data to know how each section should look and function. This gave me the ability to write better pseudo code as I knew what elements would be dynamic and interactive.
 
 Dynamic Version
-Finally after creating my Psuedo code and design ideas i began implementing Javascript to use Fetch to render the JSON data as well as creating Factory functions to create dynamic objects utilising Dom Elements that would change state after events
+
+Finally after creating my Psuedo code and design ideas I began implementing Javascript to use Fetch to render the JSON data as well as creating Factory functions to create dynamic objects utilising Dom Elements that would change state after events
 ### Built with
 
 - Semantic HTML5 markup
@@ -57,16 +60,16 @@ Finally after creating my Psuedo code and design ideas i began implementing Java
 - Mobile-first workflow
 
 ### What I learned
-As this was an invoice project that rendered data from the local Json File on the first load using fetch, i was worried about how i would store changes and edits to that data. For example with the initail load their would be a total of 7 Invoices. However, what if the user deletes 5 of those invoices leaving only 2. If the user was to refresh the App, should all the content be loaded again? Making the total invoices 7 or reload the page with only 2 invoices as the user deleted the other 5 in his previous session.
+As this was an invoice project that rendered data from the local JSON File on the first load using fetch, I was worried about how I would store changes and edits to that data. For example, with the initial load, there would be a total of 7 Invoices. However, what if the user deletes 5 of those invoices leaving only 2? If the user was to refresh the App, should all the content be loaded again? This would make the total invoices 7 or reload the page with only 2 invoices as the user deleted the other 5 in his previous session.
 
-I was able to overcome this issue by using fetch on the users first load to retrive the data then once i had done that i copied it into a  variable called res and stored it in local storage. Any time i created updated or deleted an invoice i retrive the array from local storage and updated that data.
+I was able to overcome this issue by using fetch on the user's first load to retrieve the data then once I had done that I copied it into a  variable called res and stored it in local storage. Any time I created updated or deleted an invoice I retrieve the array from local storage and updated that data.
 
-I also made sure to check if that array existed in local storage before a user loads the page if it did exist i would run the render function on that data/Array and if it did not exist meaning it probably was the users first time on the app i would use fetch to retrive the local Jsos file so i can render the invoices.
+I also made sure to check if that array existed in local storage before a user loads the page if it did exist I would run the render function on that data/Array and if it did not exist meaning it probably was the user's first time on the app I would use fetch to retrieve the local Jsos file so I can render the invoices.
 
 
-Another thing which i had learned was whenever i edited an invoice on the read page instead of manually updating it on the HomePage where you can see all the invoices i deleted all the content inside the outer invoice container and then ran the render function again on the newly updated array.
+Another thing I learned was whenever I edited an invoice on the read page instead of manually updating it on the HomePage where you can see all the invoices I deleted all the content inside the outer invoice container and then ran the render function again on the newly updated array.
 
-Func to check if data exist in local storage and also func to re render the invoices.
+Func to check if data exist in local storage and also func to re-render the invoices.
 ```js
 
 const proudOfThisFunc= () => {
@@ -106,10 +109,10 @@ const proudOfThisFunc2 = () => {
 ```
 
 ### Continued development
-Things which i will be focusing on in future projects will be using classes as i used factory functions in this project and would like a better overall understanding on OOP. Furthermore, getting a better and deeper understanding on CallBack Functions despite not using them in this project as i know it to be and integral part withing JS Programming
+Things which I will be focusing on in future projects will be using classes as I used factory functions in this project and would like a better overall understanding of OOP. Furthermore, getting a better and deeper understanding of CallBack Functions despite not using them in this project as I know it to be and integral part withing JS Programming
 
 
 ## Author
 
-- Website - [Abdi Majid](https://www.amajid.dev)
+- Website - [Abdi Majid's Portfolio](https://www.amajid.dev)
 
