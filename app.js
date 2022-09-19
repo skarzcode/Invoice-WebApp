@@ -118,7 +118,6 @@ const formDomElements = {
 
 // sets current date as the minmum date to be chosen for the date picker which is declared in the formDomElements above;
 const today = new Date().toISOString().split('T')[0];
-console.log(today)
 formDomElements.dateMade.setAttribute('min', today);
 formDomElements.dateDue.setAttribute('min', today);
 // The Dom elements for the view invoice section when a user clicks on an invoice
@@ -185,13 +184,11 @@ function switchTheme(event) {
         document.documentElement.setAttribute('data-theme', 'dark');
         document.documentElement.style.transition = "all 2s"
         localStorage.setItem('theme', 'dark');
-        console.log("checked")
     } else {
         lightAndDarkImg.src = "starter-code/assets/icon-moon.svg"
         document.documentElement.setAttribute('data-theme', 'light');
         document.documentElement.style.transition = "all 2s"
         localStorage.setItem('theme', 'light');
-        console.log("not checked")
     }
 
 
@@ -284,11 +281,6 @@ function newIteminput() {
         } else {
             newItemContainer.remove();
         }
-        // console.log(itemName[currentItemNameIndex].value)
-        // console.log(currentItemNameIndex);
-        // newBinImg.id = newItemName.value;
-        // console.log(newBinImg.id)
-        // console.log(newItemName.value);
         if (data) {
             data.forEach(currObj => {
                 currObj.items.forEach(currItem => {
@@ -392,7 +384,6 @@ function renderInvoice(curr) {
                     globalId = data.indexOf(currobj)
                 }
             })
-            console.log(cardId);
             updateInvoiceDescription(data[globalId]);
         } else {
             let data = JSON.parse(localStorage.getItem("data"));
@@ -401,11 +392,8 @@ function renderInvoice(curr) {
                     globalId = data.indexOf(currobj)
                 }
             })
-            console.log(cardId);
             updateInvoiceDescription(data[globalId]);
         }
-        console.log(globalId)
-        console.log(data[globalId]);
     })
     // 
     invoiceCard.addEventListener("click", function () {
@@ -420,7 +408,6 @@ function renderInvoice(curr) {
                     globalId = data.indexOf(currobj)
                 }
             })
-            console.log(cardId);
             updateInvoiceDescription(data[globalId]);
             if (data[globalId].items.length == 0) {
                 invoiceDescriptionDomElements.billTotal.innerHTML = "£0";
@@ -432,14 +419,11 @@ function renderInvoice(curr) {
                     globalId = data.indexOf(currobj)
                 }
             })
-            console.log(cardId);
             updateInvoiceDescription(data[globalId]);
             if (data[globalId].items.length == 0) {
                 invoiceDescriptionDomElements.billTotal.innerHTML = "£0";
             }
         }
-        console.log(globalId)
-        console.log(data[globalId]);
     })
 
     invoiceDomElements.filterStatus.addEventListener("click", function () {
@@ -519,7 +503,6 @@ function updateInvoiceDescription(curr) {
 
     invoiceDescriptionDomElements.billTotal.innerHTML += totalCount
     curr.total = totalCount;
-    console.log(totalCount)
 
     if (curr.status == "draft") {
         invoiceDescriptionDomElements.statusInvoice.innerHTML = "draft";
@@ -592,7 +575,6 @@ function updateInvoice(curr) {
     curr.paymentDue = formDomElements.dateDue.value;
     curr.description = formDomElements.projectDescription.value;
     let count = itemName.length - curr.items.length + 1;
-    console.log(count);
     for (let i = 1; i < count; i++) {
         let itemIndex = itemName.length - i;
         let NewList = listItems(itemName[itemIndex].value, itemQty[itemIndex].value, itemPrice[itemIndex].value, itemTotal[itemIndex].innerHTML);
@@ -606,11 +588,6 @@ function updateInvoice(curr) {
         curr.items[i].total = itemTotal[i].innerHTML;
     }
     let bin = document.getElementsByClassName("delete-item");
-
-    // for (let i = 0; i<bin.length; i++){
-    //     bin[i].id = itemName[i].value;
-    //     console.log(bin[i].id)
-    // }
 
     localStorage.setItem("data", JSON.stringify(data));
 }
@@ -634,7 +611,6 @@ function populateForm(curr) {
 
     curr.items.forEach(current => {
         newIteminput()
-        console.log("new one")
     })
 
     for (let i = 0; i < curr.items.length; i++) {
@@ -642,20 +618,12 @@ function populateForm(curr) {
         itemQty[i].value = curr.items[i].quantity;
         itemPrice[i].value = curr.items[i].price;
         itemTotal[i].innerHTML = curr.items[i].total;
-        console.log(i);
 
     }
 
 
 
     let bin = document.getElementsByClassName("delete-item");
-
-    // for (let i = 0; i<bin.length; i++){
-    //     bin[i].id = itemName[i].value;
-    //     console.log(bin[i].id)
-    // }
-
-
 }
 
 // function for form validation
@@ -718,13 +686,11 @@ formDomElements.saveBtn.addEventListener("click", function () {
     let email = document.querySelector(".client-email");
 
     if (email.value.indexOf('@') == -1 || email.value.indexOf('.com') == -1 || email.value.length < 14) {
-        console.log("test not passed")
         validationMsg2.classList.add("showValidationMsg");
         setTimeout(() => {
             validationMsg2.classList.remove("showValidationMsg");
         }, 5000);
     } else if (email.value.indexOf('@') > -1 || email.value.indexOf('.com') > -1 || email.value.length >= 8) {
-        console.log("all tst passed")
     }
 
     if (formValidation() == false) {
@@ -734,9 +700,7 @@ formDomElements.saveBtn.addEventListener("click", function () {
         setTimeout(() => {
             validationMsg.classList.remove("showValidationMsg");
         }, 5000);
-        console.log("form not filled")
     } else {
-        console.log("form filled");
 
         let totalCount = 0;
         for (let i = 0; i < itemTotal.length; i++) {
@@ -744,7 +708,6 @@ formDomElements.saveBtn.addEventListener("click", function () {
         }
 
         invoiceDescriptionDomElements.billTotal.innerHTML += totalCount
-        console.log(totalCount)
         currobj = InvoiceObj(idGenerator(), formDomElements.dateMade.value, formDomElements.dateDue.value, formDomElements.projectDescription.value, formDomElements.clientName.value, formDomElements.clientEmail.value, formDomElements.fromAddress.value, formDomElements.fromCity.value, formDomElements.fromPostCode.value, formDomElements.fromCountry.value, formDomElements.toAddress.value, formDomElements.toCity.value, formDomElements.toPostCode.value, formDomElements.toCountry.value, totalCount);
         let data = JSON.parse(localStorage.getItem("data"));
         if (data) {
@@ -776,8 +739,7 @@ formDomElements.draftBtn.addEventListener("click", function () {
         totalCount += parseFloat(itemTotal[i].innerHTML);
     }
 
-    invoiceDescriptionDomElements.billTotal.innerHTML += totalCount
-    console.log(totalCount)
+    invoiceDescriptionDomElements.billTotal.innerHTML += totalCount;
     currobj = InvoiceObj(idGenerator(), formDomElements.dateMade.value, formDomElements.dateDue.value, formDomElements.projectDescription.value, formDomElements.clientName.value, formDomElements.clientEmail.value, formDomElements.fromAddress.value, formDomElements.fromCity.value, formDomElements.fromPostCode.value, formDomElements.fromCountry.value, formDomElements.toAddress.value, formDomElements.toCity.value, formDomElements.toPostCode.value, formDomElements.toCountry.value, totalCount);
     currobj.status = "draft";
     let data = JSON.parse(localStorage.getItem("data"));
@@ -840,16 +802,13 @@ invoiceDescriptionDomElements.deletBtn.forEach(currBtn => {
     currBtn.addEventListener("click", function () {
         overLay.classList.add("DisplayFlex");
         deletId.innerHTML = invoiceDescriptionDomElements.projID.innerHTML;
-        console.log(globalId);
     })
 })
 // deletes an invoice from the dom and from the array
 overlayDeleteBtn.addEventListener("click", function () {
     let data = JSON.parse(localStorage.getItem("data"));
-    console.log("working");
     if (data) {
         data.splice(globalId, 1)
-        console.log(data);
         localStorage.setItem("data", JSON.stringify(data))
         counter--;
         invoiceDomElements.invoiceCounter.innerHTML = counter;
@@ -858,7 +817,6 @@ overlayDeleteBtn.addEventListener("click", function () {
     } else {
         let data = JSON.parse(localStorage.getItem("data"));
         data.splice(globalId, 1)
-        console.log(data);
         localStorage.setItem("data", JSON.stringify(data))
         counter--;
         invoiceDomElements.invoiceCounter.innerHTML = counter;
@@ -873,7 +831,6 @@ overlayDeleteBtn.addEventListener("click", function () {
             renderInvoice(current);
             localStorage.setItem("data", JSON.stringify(data))
         });
-        console.log("exists");
     } else {
         let data = JSON.parse(localStorage.getItem("data"));
         data.forEach(current => {
@@ -883,8 +840,6 @@ overlayDeleteBtn.addEventListener("click", function () {
         localStorage.setItem("data", JSON.stringify(data))
     };
     globalId = "";
-    console.log(globalId);
-    console.log(data);
 
     let oldRecipt = document.querySelectorAll(".recipt");
 
@@ -897,7 +852,6 @@ overlayDeleteBtn.addEventListener("click", function () {
 //removes the delete confirmation page
 overlayCancelBtn.addEventListener("click", function () {
     overLay.classList.remove("DisplayFlex");
-    console.log(globalId);
 })
 
 // chnages the state of the app back from the description pajge to the invoice page
@@ -911,7 +865,6 @@ invoiceDescriptionDomElements.backBtn.addEventListener("click", function () {
             renderInvoice(current);
             localStorage.setItem("data", JSON.stringify(data))
         });
-        console.log("exists");
     } else {
         data.forEach(current => {
             renderInvoice(current);
@@ -920,8 +873,6 @@ invoiceDescriptionDomElements.backBtn.addEventListener("click", function () {
         localStorage.setItem("data", JSON.stringify(data))
     };
     globalId = "";
-    console.log(globalId);
-    console.log(data);
 
     let oldRecipt = document.querySelectorAll(".recipt");
 
@@ -939,6 +890,7 @@ invoiceDomElements.newInvoiceBtn.addEventListener("click", function () {
     formDomElements.saveBtn.classList.remove("buttonDisplayNone");
     formDomElements.cancelBtn.classList.remove("buttonDisplay");
     formDomElements.saveChangebtn.classList.remove("buttonDisplay");
+    formDomElements.formHeader.innerHTML = "New Invoice";
 });
 
 // displays form to edit
@@ -953,10 +905,8 @@ invoiceDescriptionDomElements.editBtn.forEach(btn => {
         formDomElements.saveChangebtn.classList.add("buttonDisplay");
         let data = JSON.parse(localStorage.getItem("data"));
         if (data) {
-            console.log(data[globalId]);
         } else {
             let data = JSON.parse(localStorage.getItem("data"));
-            console.log(data[globalId]);
         }
         formDomElements.cancelBtn.addEventListener("click", function () {
             formContainer.classList.remove("displayForm");
@@ -970,7 +920,6 @@ invoiceDescriptionDomElements.editBtn.forEach(btn => {
         formDomElements.saveChangebtn.addEventListener("click", function () {
             if (formValidation() == false) {
                 // Error
-                console.log("form not filled")
                 let data = JSON.parse(localStorage.getItem("data"));
                 if (data) {
                     updateInvoice(data[globalId]);
@@ -980,8 +929,6 @@ invoiceDescriptionDomElements.editBtn.forEach(btn => {
                     invoiceDescriptionDomElements.statusContainer2.style.backgroundColor = "rgba(40, 67, 135,0.15)";
                     invoiceDescriptionDomElements.statusInvoice.style.color = "blue";
                     invoiceDescriptionDomElements.dot2.style.backgroundColor = "blue";
-                    console.log(data);
-                    console.log(data[globalId]);
                     localStorage.setItem("data", JSON.stringify(data))
 
 
@@ -1000,16 +947,12 @@ invoiceDescriptionDomElements.editBtn.forEach(btn => {
                         let data = JSON.parse(localStorage.getItem("data"));
                         updateInvoice(data[globalId]);
                         updateInvoiceDescription(data[globalId]);
-                        console.log(data);
-                        console.log(data[globalId]);
                         localStorage.setItem("data", JSON.stringify(data))
                     }
                 }
                 formContainer.classList.remove("displayForm");
 
             } else {
-
-                console.log("form filled")
                 let data = JSON.parse(localStorage.getItem("data"));
                 if (data) {
                     updateInvoice(data[globalId]);
@@ -1019,8 +962,6 @@ invoiceDescriptionDomElements.editBtn.forEach(btn => {
                     invoiceDescriptionDomElements.statusContainer2.style.backgroundColor = "rgba(255,143,0,0.15)";
                     invoiceDescriptionDomElements.statusInvoice.style.color = "#FF8F00";
                     invoiceDescriptionDomElements.dot2.style.backgroundColor = "#FF8F00";
-                    console.log(data);
-                    console.log(data[globalId]);
                     localStorage.setItem("data", JSON.stringify(data))
 
 
@@ -1028,8 +969,6 @@ invoiceDescriptionDomElements.editBtn.forEach(btn => {
                     let data = JSON.parse(localStorage.getItem("data"));
                     updateInvoice(data[globalId]);
                     updateInvoiceDescription(data[globalId]);
-                    console.log(data);
-                    console.log(data[globalId]);
                     localStorage.setItem("data", JSON.stringify(data))
                 }
                 formContainer.classList.remove("displayForm");
@@ -1050,7 +989,6 @@ invoiceDescriptionDomElements.editBtn.forEach(btn => {
 
         if (data) {
             populateForm(data[globalId])
-            console.log(globalId);
         } else {
             let data = JSON.parse(localStorage.getItem("data"));
             populateForm(data[globalId])
@@ -1065,10 +1003,8 @@ if (data) {
         counter++;
         invoiceDomElements.invoiceCounter.innerHTML = counter;
     });
-    console.log("exists");
 } else {
     reqData();
-    console.log("does not exist");
     counter = 7;
     invoiceDomElements.invoiceCounter.innerHTML = counter;
 }
