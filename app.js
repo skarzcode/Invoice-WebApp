@@ -1005,7 +1005,7 @@ if (data) {
     });
 } else {
     reqData();
-    counter = 7;
+    counter = 3;
     invoiceDomElements.invoiceCounter.innerHTML = counter;
 }
 
